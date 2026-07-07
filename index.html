@@ -1,0 +1,2090 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>路思铭 — 导演 / 摄影指导 作品集</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#0a0a0f;--bg2:#101018;--surface:rgba(255,255,255,0.035);--surface2:rgba(255,255,255,0.05);
+  --gold:#d4af6a;--gold-bright:#f1d79b;--gold-soft:#e8c887;
+  --text:#ecebe5;--text2:#a9a7a0;--text3:#6c6a64;
+  --line:rgba(212,175,106,0.16);--line2:rgba(255,255,255,0.07);
+  --serif:"Noto Serif SC","Cormorant Garamond",serif;
+  --sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --maxw:1180px;--ease:cubic-bezier(.25,.46,.45,.94);
+}
+html[data-theme="light"]{
+  --bg:#f4f1ea;--bg2:#fbf9f4;--surface:rgba(20,16,8,0.035);--surface2:rgba(20,16,8,0.05);
+  --gold:#a9802f;--gold-bright:#8a6418;--gold-soft:#b8862f;
+  --text:#1d1b16;--text2:#4f4a40;--text3:#8a8475;
+  --line:rgba(169,128,47,0.22);--line2:rgba(20,16,8,0.08);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.75;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .5s,color .5s}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gold);color:#000}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:9px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--gold),var(--gold-soft));border-radius:9px}
+
+/* Film grain + particles */
+#grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.045;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* Progress bar */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:200;
+  background:linear-gradient(90deg,var(--gold-soft),var(--gold-bright));box-shadow:0 0 12px var(--gold)}
+
+/* Top nav */
+.topnav{position:fixed;top:0;left:0;right:0;z-index:150;display:flex;align-items:center;justify-content:space-between;
+  padding:16px 28px;transform:translateY(-110%);transition:transform .45s var(--ease),background .4s,padding .4s;
+  background:linear-gradient(180deg,rgba(10,10,15,.92),rgba(10,10,15,0));backdrop-filter:blur(10px)}
+html[data-theme="light"] .topnav{background:linear-gradient(180deg,rgba(244,241,234,.92),rgba(244,241,234,0))}
+.topnav.show{transform:translateY(0)}
+.topnav.scrolled{padding:11px 28px;background:rgba(10,10,15,.82);box-shadow:0 1px 0 var(--line2)}
+html[data-theme="light"] .topnav.scrolled{background:rgba(244,241,234,.85)}
+.nav-logo{font-family:var(--serif);font-size:20px;font-weight:700;letter-spacing:2px;color:var(--text)}
+.nav-logo b{color:var(--gold)}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{font-size:13px;letter-spacing:1.5px;color:var(--text2);position:relative;transition:color .3s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--gold);transition:width .3s}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-tools{display:flex;align-items:center;gap:14px}
+.icon-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--surface);
+  color:var(--gold);cursor:pointer;display:grid;place-items:center;font-size:15px;transition:.3s}
+.icon-btn:hover{background:var(--gold);color:#000;transform:rotate(18deg)}
+.menu-btn{display:none}
+
+/* Layout */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+section{position:relative;z-index:2}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;position:relative}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(60% 50% at 50% 38%,rgba(212,175,106,.14),transparent 70%)}
+.hero-greeting{font-size:13px;letter-spacing:7px;color:var(--gold);margin-bottom:26px;
+  opacity:0;animation:rise .9s var(--ease) .15s forwards}
+.hero-name{font-family:var(--serif);font-weight:700;font-size:clamp(64px,15vw,168px);line-height:.95;letter-spacing:6px;
+  color:var(--text);text-shadow:0 0 60px rgba(212,175,106,.25);opacity:0;animation:rise 1s var(--ease) .3s forwards}
+.hero-name span{color:var(--gold);background:linear-gradient(180deg,var(--gold-bright),var(--gold));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-title{font-size:clamp(15px,2.4vw,20px);letter-spacing:4px;color:var(--text2);margin-top:22px;font-weight:300;
+  opacity:0;animation:rise 1s var(--ease) .5s forwards}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:center;margin-top:34px;
+  opacity:0;animation:rise 1s var(--ease) .7s forwards}
+.hero-meta-item{font-size:12.5px;letter-spacing:1.5px;color:var(--text3);display:flex;align-items:center;gap:8px}
+.hero-meta-item .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+.hero-scroll{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);width:26px;height:42px;
+  border:1px solid var(--line);border-radius:14px;display:flex;justify-content:center;padding-top:8px;
+  opacity:0;animation:rise 1s var(--ease) .95s forwards}
+.hero-scroll span{width:4px;height:8px;border-radius:3px;background:var(--gold);animation:scrolldot 1.6s infinite}
+@keyframes scrolldot{0%{opacity:0;transform:translateY(-4px)}40%{opacity:1}100%{opacity:0;transform:translateY(12px)}}
+@keyframes rise{to{opacity:1;transform:translateY(0)}}
+.hero-greeting,.hero-name,.hero-title,.hero-meta,.hero-scroll{transform:translateY(24px)}
+.hero-watermark{position:absolute;bottom:6%;font-family:var(--serif);font-size:clamp(80px,22vw,260px);
+  color:rgba(212,175,106,.045);font-weight:700;letter-spacing:10px;z-index:-1;user-select:none;white-space:nowrap}
+
+/* Section header */
+.section{padding:120px 0}
+.sec-head{text-align:center;margin-bottom:64px}
+.sec-label{font-size:12px;letter-spacing:6px;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+.sec-title{font-family:var(--serif);font-size:clamp(30px,5vw,46px);font-weight:700;letter-spacing:3px;color:var(--text)}
+.sec-line{width:54px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:20px auto 0}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:56px;align-items:center}
+.about-text p{color:var(--text2);font-size:15.5px;margin-bottom:18px;line-height:2}
+.about-text .hl{color:var(--gold);font-weight:500}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.stat-card{background:var(--surface);border:1px solid var(--line2);border-radius:14px;padding:26px 22px;text-align:center;
+  transition:.4s var(--ease);position:relative;overflow:hidden}
+.stat-card::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 0, rgba(212,175,106,.12),transparent 60%);opacity:0;transition:.4s}
+.stat-card:hover{transform:translateY(-5px);border-color:var(--line);box-shadow:0 16px 40px rgba(0,0,0,.3)}
+.stat-card:hover::before{opacity:1}
+.stat-number{font-family:var(--serif);font-size:46px;font-weight:700;color:var(--gold);line-height:1}
+.stat-label{font-size:12.5px;color:var(--text3);margin-top:10px;letter-spacing:1px}
+
+/* Style cards */
+.style-intro{color:var(--text2);font-size:15.5px;line-height:2;max-width:760px;margin:0 auto 50px;text-align:center}
+.style-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.style-card{background:var(--surface);border:1px solid var(--line2);border-radius:16px;padding:34px 26px;
+  transition:.45s var(--ease);position:relative;overflow:hidden}
+.style-card:hover{transform:translateY(-8px);border-color:var(--line);box-shadow:0 22px 50px rgba(0,0,0,.35)}
+.style-card-num{font-family:var(--serif);font-size:54px;font-weight:700;color:rgba(212,175,106,.22);
+  position:absolute;top:14px;right:20px;transition:.45s}
+.style-card:hover .style-card-num{color:var(--gold);transform:scale(1.1)}
+.style-card h4{font-size:19px;color:var(--text);margin-bottom:12px;letter-spacing:1px}
+.style-card p{font-size:13.5px;color:var(--text2);line-height:1.9}
+
+/* School */
+.school-intro{color:var(--text2);font-size:15.5px;line-height:2;max-width:800px;margin-bottom:36px}
+.school-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:30px}
+.school-reps{font-size:13px;color:var(--text3);letter-spacing:1px}
+.school-reps b{color:var(--gold);font-weight:500}
+
+/* Timeline */
+.timeline{position:relative;max-width:880px;margin:0 auto;padding-left:30px}
+.timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line2)}
+.timeline-progress{position:absolute;left:7px;top:6px;width:2px;height:0;background:linear-gradient(var(--gold),var(--gold-soft));box-shadow:0 0 10px var(--gold);transition:height .15s linear}
+.timeline-item{position:relative;padding:0 0 46px 36px}
+.timeline-dot{position:absolute;left:-30px;top:4px;width:16px;height:16px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--gold);box-shadow:0 0 0 4px rgba(212,175,106,.12)}
+.timeline-card{background:var(--surface);border:1px solid var(--line2);border-radius:16px;padding:26px 30px;transition:.4s var(--ease)}
+.timeline-card:hover{border-color:var(--line);transform:translateX(6px)}
+.timeline-date{font-family:var(--serif);font-size:14px;letter-spacing:2px;color:var(--gold);margin-bottom:8px}
+.timeline-role{font-size:19px;font-weight:600;color:var(--text);margin-bottom:4px}
+.timeline-company{font-size:14px;color:var(--gold-soft);margin-bottom:12px;letter-spacing:.5px}
+.timeline-desc{font-size:13.5px;color:var(--text2);line-height:1.95}
+
+/* Awards */
+.awards-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.award-card{background:var(--surface);border:1px solid var(--line2);border-radius:14px;padding:24px 22px;
+  display:flex;gap:14px;align-items:flex-start;transition:.4s var(--ease)}
+.award-card:hover{transform:translateY(-6px);border-color:var(--line);box-shadow:0 18px 40px rgba(0,0,0,.3);background:var(--surface2)}
+.award-icon{font-size:24px;flex-shrink:0}
+.award-title{font-size:14px;font-weight:600;color:var(--text);line-height:1.5}
+.award-sub{font-size:12px;color:var(--text3);margin-top:3px}
+
+/* Gallery */
+.filter-bar{position:sticky;top:62px;z-index:50;background:linear-gradient(180deg,var(--bg) 70%,transparent);
+  padding:14px 0 18px;margin-bottom:42px}
+.chips{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 10px;scrollbar-width:thin}
+.chips::-webkit-scrollbar{height:5px}
+.chips::-webkit-scrollbar-thumb{background:var(--gold-soft);border-radius:5px}
+.chip{flex:0 0 auto;padding:8px 18px;border-radius:30px;border:1px solid var(--line2);background:var(--surface);
+  color:var(--text2);font-size:13px;letter-spacing:1px;cursor:pointer;white-space:nowrap;transition:.3s var(--ease)}
+.chip:hover{color:var(--gold);border-color:var(--line)}
+.chip.active{background:linear-gradient(120deg,var(--gold),var(--gold-soft));color:#000;border-color:transparent;font-weight:600;box-shadow:0 6px 18px rgba(212,175,106,.3)}
+.album{margin-bottom:64px}
+.album-header{display:flex;align-items:baseline;gap:16px;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid var(--line2)}
+.album-title{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--text);letter-spacing:2px}
+.album-role{font-size:12.5px;color:var(--gold);letter-spacing:1px}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.gallery-item{position:relative;overflow:hidden;border-radius:10px;cursor:pointer;background:var(--surface);
+  aspect-ratio:4/3;transition:transform .5s var(--ease),opacity .4s,box-shadow .4s}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease),filter .5s;filter:brightness(.9) saturate(1.02)}
+.gallery-item:hover{box-shadow:0 18px 44px rgba(0,0,0,.45)}
+.gallery-item:hover img{transform:scale(1.07);filter:brightness(1.05)}
+.gallery-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,8,12,.72),transparent 55%);
+  display:flex;align-items:flex-end;justify-content:flex-start;padding:14px;opacity:0;transition:.4s var(--ease)}
+.gallery-item:hover .gallery-overlay{opacity:1}
+.gallery-overlay .view{font-size:12px;letter-spacing:2px;color:#fff;border:1px solid rgba(255,255,255,.5);
+  padding:5px 12px;border-radius:20px;backdrop-filter:blur(4px);transform:translateY(8px);transition:.4s}
+.gallery-item:hover .view{transform:translateY(0)}
+.album.hide{display:none}
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;z-index:300;background:rgba(6,6,10,.94);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:.35s var(--ease)}
+.lightbox.open{opacity:1;visibility:visible}
+.lb-stage{position:relative;max-width:92vw;max-height:86vh;display:flex;align-items:center;justify-content:center}
+.lb-img{max-width:92vw;max-height:82vh;object-fit:contain;border-radius:6px;box-shadow:0 0 90px rgba(0,0,0,.6);
+  transform:scale(.94);transition:transform .35s var(--ease);cursor:zoom-in}
+.lightbox.open .lb-img{transform:scale(1)}
+.lb-img.zoom{cursor:zoom-out;transform:scale(1.6)}
+.lb-cap{position:absolute;top:-46px;left:0;color:#fff;font-family:var(--serif);letter-spacing:2px;font-size:18px}
+.lb-cap small{display:block;color:var(--gold);font-family:var(--sans);font-size:12px;letter-spacing:1px;margin-top:2px;font-weight:400}
+.lb-count{position:absolute;bottom:-40px;left:0;color:var(--text2);font-size:13px;letter-spacing:2px}
+.lb-btn{position:absolute;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;
+  border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;font-size:22px;cursor:pointer;
+  display:grid;place-items:center;transition:.3s;z-index:2}
+.lb-btn:hover{background:var(--gold);color:#000;transform:translateY(-50%) scale(1.08)}
+.lb-prev{left:-72px}.lb-next{right:-72px}
+.lb-close{position:absolute;top:26px;right:30px;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);
+  background:rgba(255,255,255,.04);color:#fff;font-size:22px;cursor:pointer;transition:.3s;z-index:3}
+.lb-close:hover{background:var(--gold);color:#000;transform:rotate(90deg)}
+.lb-spin{position:absolute;width:42px;height:42px;border:3px solid rgba(255,255,255,.2);border-top-color:var(--gold);
+  border-radius:50%;animation:spin .8s linear infinite;display:none}
+.lb-spin.show{display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:760px){
+  .lb-prev{left:8px}.lb-next{right:8px}.lb-cap{top:-38px;font-size:15px}.lb-count{bottom:-34px}
+}
+
+/* Brands */
+.brand-wrap{overflow:hidden;position:relative;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.brand-track{display:flex;gap:14px;width:max-content;animation:marquee 38s linear infinite}
+.brand-wrap:hover .brand-track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.brand-tag{flex:0 0 auto;padding:12px 24px;border-radius:40px;border:1px solid var(--line2);
+  background:var(--surface);color:var(--text2);font-size:15px;letter-spacing:1px;transition:.3s}
+.brand-tag.gold{border-color:var(--line);color:var(--gold-soft)}
+.brand-tag.silver{border-color:rgba(255,255,255,.18);color:#cfd2d8}
+.brand-tag:hover{transform:translateY(-3px);color:var(--gold)}
+.brand-sub{text-align:center;color:var(--text3);font-size:13px;letter-spacing:1px;margin-bottom:34px}
+
+/* Footer */
+.footer{text-align:center;padding:110px 0 50px;border-top:1px solid var(--line2);margin-top:40px}
+.footer-name{font-family:var(--serif);font-size:34px;font-weight:700;color:var(--text);letter-spacing:4px}
+.footer-contact{font-size:14px;color:var(--text2);letter-spacing:1.5px;margin-top:14px}
+.footer-contact.gold{color:var(--gold);margin-top:8px}
+.footer-copy{font-size:12px;color:var(--text3);margin-top:36px;opacity:.6;letter-spacing:1px}
+
+/* Back to top */
+.totop{position:fixed;right:26px;bottom:26px;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);
+  background:var(--surface);color:var(--gold);cursor:pointer;display:grid;place-items:center;font-size:18px;z-index:140;
+  opacity:0;visibility:hidden;transition:.4s var(--ease)}
+.totop.show{opacity:1;visibility:visible}
+.totop:hover{background:var(--gold);color:#000;transform:translateY(-4px)}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* Responsive */
+@media(max-width:980px){.style-cards,.awards-grid{grid-template-columns:repeat(2,1fr)}.about-grid{grid-template-columns:1fr;gap:36px}.school-stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){
+  .nav-links{position:fixed;top:0;right:0;height:100vh;width:74%;max-width:320px;flex-direction:column;justify-content:center;
+    background:rgba(10,10,15,.97);gap:30px;transform:translateX(100%);transition:transform .4s var(--ease);padding:0}
+  .nav-links.open{transform:none}
+  .menu-btn{display:grid;place-items:center}
+  .section{padding:84px 0}
+  .style-cards,.awards-grid,.school-stats{grid-template-columns:1fr}
+  .about-stats{grid-template-columns:1fr 1fr}
+  .filter-bar{top:56px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+<script src="https://beacon.cdn.qq.com/sdk/4.5.9/beacon_web.min.js"></script>
+<script>
+(function(){
+  try{
+    var beacon=new BeaconAction({
+      appkey:'0WEB06U85YBSLJNL',
+      versionCode:'1.0.0',
+      channelID:'share',
+      delay:1000,
+      sessionDuration:30*60*1000,
+      isOversea:false,
+      needReportRqdEvent:false
+    });
+    beacon.onDirectUserAction('preview_page_view',{
+      'url':location.href,
+      'referrer':document.referrer,
+      'title':document.title,
+      'sandbox_id':'6af4b43c6d7f42feb0c82972312ccce0'
+    });
+  }catch(e){}
+})();
+</script></head>
+<body>
+<div id="grain"></div>
+<canvas id="particles"></canvas>
+<div id="progress"></div>
+
+<nav class="topnav" id="topnav">
+  <div class="nav-logo">路<b>思铭</b></div>
+  <div class="nav-links" id="navlinks">
+    <a href="#hero" class="active">首页</a>
+    <a href="#about">简介</a>
+    <a href="#style">风格</a>
+    <a href="#experience">经历</a>
+    <a href="#awards">荣誉</a>
+    <a href="#gallery">作品</a>
+    <a href="#brands">合作</a>
+  </div>
+  <div class="nav-tools">
+    <button class="icon-btn" id="themeBtn" title="切换主题">◐</button>
+    <button class="icon-btn menu-btn" id="menuBtn" title="菜单">☰</button>
+  </div>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-watermark">LU SIMING</div>
+  <p class="hero-greeting">DIRECTOR · CINEMATOGRAPHER</p>
+  <h1 class="hero-name">路<span>思铭</span></h1>
+  <p class="hero-title">导演 / 摄影指导 / 灯光师 / 制片人</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="dot"></span> 南京传媒学院 · 影视摄影与制作</div>
+    <div class="hero-meta-item"><span class="dot"></span> 新片场 签约认证</div>
+    <div class="hero-meta-item"><span class="dot"></span> Blackmagic Design 达芬奇认证</div>
+  </div>
+  <div class="hero-scroll"><span></span></div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="sec-label">About</div><h2 class="sec-title">个人简介</h2><div class="sec-line"></div></div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>您好！我是<span class="hl">路思铭</span>，00后，水瓶座，ENTJ-A / ENFJ-A。2025年毕业于<span class="hl">南京传媒学院</span>（原中国传媒大学南广学院）影视摄影与制作（电视摄影）专业，预备党员。</p>
+        <p>拥有<span class="hl">4年</span>专业摄影摄像全流程实操经验，是<span class="hl">新片场签约创作者</span>与认证摄影师。精通索尼、佳能、ARRI、RED等专业摄制设备，熟练驾驭PR、达芬奇等行业级后期软件，具备全链路创作能力。</p>
+        <p>深度参与政企校多领域标杆项目，从创意策划到落地交付的全流程实战经验。始终以专业创作者的素养和管理者的格局要求自己，期待以全维度专业能力为视觉内容创作赋能。</p>
+      </div>
+      <div class="about-stats reveal">
+        <div class="stat-card"><div class="stat-number" data-count="4" data-suffix="+">0</div><div class="stat-label">年全流程实操经验</div></div>
+        <div class="stat-card"><div class="stat-number" data-count="2" data-suffix="×">0</div><div class="stat-label">澳门国际电影节入围</div></div>
+        <div class="stat-card"><div class="stat-number" data-count="50" data-suffix="+">0</div><div class="stat-label">品牌直播合作</div></div>
+        <div class="stat-card"><div class="stat-number" data-count="30" data-suffix="+">0</div><div class="stat-label">影视 / TVC 项目</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="style">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="sec-label">Visual Style</div><h2 class="sec-title">摄影风格</h2><div class="sec-line"></div></div>
+    <p class="style-intro reveal">以「<span style="color:var(--gold);font-weight:600">大色块美术 + 彩色灯光叙事</span>」为核心，通过色彩与灯光的技术协同，实现视觉风格与叙事的强绑定，适配高风格化短剧、沉浸式氛围类影视项目。</p>
+    <div class="style-cards">
+      <div class="style-card reveal"><div class="style-card-num">01</div><h4>色彩体系</h4><p>高饱和强对比色块排布，以主色块锚定视觉重心，兼顾视觉标识性与叙事情绪分层。</p></div>
+      <div class="style-card reveal"><div class="style-card-num">02</div><h4>灯光策略</h4><p>以RGB染色灯强化色块情绪，通过亮度渐变赋予动态层次，放大色彩张力，保留画面呼吸感。</p></div>
+      <div class="style-card reveal"><div class="style-card-num">03</div><h4>构图逻辑</h4><p>框架式构图分配色块视觉权重，特写聚焦灯光与色块的反放肌理，在强风格中兼顾细节质感。</p></div>
+      <div class="style-card reveal"><div class="style-card-num">04</div><h4>创作价值</h4><p>大色块为灯光提供视觉载体，彩色灯光赋予动态情绪，实现风格辨识度与情绪传递的双重高效落地。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="school">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="sec-label">Early Works</div><h2 class="sec-title">在校与自由时期作品</h2><div class="sec-line"></div></div>
+    <p class="school-intro reveal">大学期间独立或带领团队完成的影视项目，涵盖了微电影、纪录片、MV、实验短片等多种类型。多部作品入围澳门国际电影节、莫斯科国际电影节等国内外影展，展现了从学生创作者到独立导演的成长轨迹。</p>
+    <div class="school-stats">
+      <div class="stat-card"><div class="stat-number" data-count="12" data-suffix="+">0</div><div class="stat-label">在校导演作品</div></div>
+      <div class="stat-card"><div class="stat-number" data-count="8" data-suffix="+">0</div><div class="stat-label">自由时期项目</div></div>
+      <div class="stat-card"><div class="stat-number" data-count="3" data-suffix="×">0</div><div class="stat-label">国际电影节入围</div></div>
+      <div class="stat-card"><div class="stat-number" data-count="2" data-suffix="×">0</div><div class="stat-label">国家级奖项</div></div>
+    </div>
+    <p class="school-reps reveal">代表作品：<b>《望天水》《预制》《图兰朵·心》《秋水揽星河》《麻雀》《大雾朦胧》《你忘记了谁》</b> 等</p>
+  </div>
+</section>
+
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="sec-label">Experience</div><h2 class="sec-title">工作经历</h2><div class="sec-line"></div></div>
+    <div class="timeline">
+      <div class="timeline-progress" id="tlProgress"></div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-date">2022 — 2023</div>
+          <div class="timeline-role">实习</div>
+          <div class="timeline-company">南京有礼控股有限公司</div>
+          <div class="timeline-desc">负责汉节等大型活动现场摄影及素材快剪；参与大型活动项目策划，助力"HOCH 汉堡节"从南京本土美食活动转型为全国性城市IP。</div>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-date">2025.07 — 2026.01</div>
+          <div class="timeline-role">摄影师</div>
+          <div class="timeline-company">南京心来文化传媒有限公司（抖音本地生活 S级全案服务商）</div>
+          <div class="timeline-desc">主导直播项目全流程视觉体系搭建，统筹导播调度、多机位执行；负责纪实类内容创作及高质感花絮短片拍摄、剪辑后期优化；参与150+场GMV破千万直播。</div>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-date">2026.02 — 2026.04</div>
+          <div class="timeline-role">摄影师</div>
+          <div class="timeline-company">南京悟影 Insfinity — Inhouse 团队</div>
+          <div class="timeline-desc">采用项目组负责制，核心人员牵头组建创意团队，主导行业头部品牌宣传片，深耕车辆、数码、地产、能源等领域，精准把握品牌调性与产品卖点。</div>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-date">2026.05 — 至今</div>
+          <div class="timeline-role">摄影师</div>
+          <div class="timeline-company">南京西西里文化传媒有限公司</div>
+          <div class="timeline-desc">国内知名MCN机构，成立于2015年，全网粉丝超2亿，视频总播放量超500亿，累计服务品牌5000+家，旗下拥有"烧酒栗子""柯北大测评""原来是柒公子"等200+个IP。国家一级广告资质企业、南京市瞪羚企业。在职负责短视频及商业项目拍摄。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="awards">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="sec-label">Honors</div><h2 class="sec-title">荣誉认证</h2><div class="sec-line"></div></div>
+    <div class="awards-grid">
+      <div class="award-card reveal">
+        <div class="award-icon">🏆</div>
+        <div class="award-text"><div class="award-title">第12届澳门国际电影节</div><div class="award-sub">《望天水》入围</div></div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🏆</div>
+        <div class="award-text"><div class="award-title">第13届澳门国际电影节</div><div class="award-sub">《麻雀》入围</div></div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🏆</div>
+        <div class="award-text"><div class="award-title">第15届澳门国际微电影节</div><div class="award-sub">《预制》入围</div></div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🥈</div>
+        <div class="award-text"><div class="award-title">中国创意挑战大赛</div><div class="award-sub">微电影类 二等奖</div></div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🥉</div>
+        <div class="award-text"><div class="award-title">中国创意挑战大赛</div><div class="award-sub">短视频类 三等奖</div></div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🎬</div>
+        <div class="award-text"><div class="award-title">思锐短片创作赛</div><div class="award-sub">赛事贡献奖</div></div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🎬</div>
+        <div class="award-text"><div class="award-title">莫斯科国际电影节</div><div class="award-sub">《大雾朦胧》入围</div></div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">🌟</div>
+        <div class="award-text"><div class="award-title">平遥国际摄影大展</div><div class="award-sub">优秀志愿者 & 优秀策展人</div></div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">📜</div>
+        <div class="award-text"><div class="award-title">Blackmagic Design</div><div class="award-sub">达芬奇 20 版本认证</div></div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">📜</div>
+        <div class="award-text"><div class="award-title">新片场</div><div class="award-sub">签约认证</div></div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">⭐</div>
+        <div class="award-text"><div class="award-title">连续两年</div><div class="award-sub">优秀共青团员</div></div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-icon">⭐</div>
+        <div class="award-text"><div class="award-title">优秀班干部</div><div class="award-sub">学院特别贡献奖</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="sec-label">Portfolio</div><h2 class="sec-title">作品静帧画廊</h2><div class="sec-line"></div></div>
+    <p class="reveal" style="text-align:center;color:var(--text3);font-size:13px;letter-spacing:1px;margin-bottom:8px">点击任意图片进入全屏灯箱浏览 · 共 278 张作品静帧</p>
+    <div class="filter-bar reveal">
+      <div class="chips" id="chips">
+<button class="chip active" data-filter="all">全部作品</button><button class="chip" data-filter="封面">封面</button><button class="chip" data-filter="认证与平台">认证与平台</button><button class="chip" data-filter="部分作品展示">部分作品展示</button><button class="chip" data-filter="《望天水》">《望天水》</button><button class="chip" data-filter="《图兰朵·心》">《图兰朵·心》</button><button class="chip" data-filter="《紫丝带与红山茶》">《紫丝带与红山茶》</button><button class="chip" data-filter="《长夜绵绵》">《长夜绵绵》</button><button class="chip" data-filter="《浮白载笔》">《浮白载笔》</button><button class="chip" data-filter="Kappa TVC">Kappa TVC</button><button class="chip" data-filter="金典·春日有机生活节 TVC">金典·春日有机生活节 TVC</button><button class="chip" data-filter="《霓虹之下》">《霓虹之下》</button><button class="chip" data-filter="《蔚然成风》">《蔚然成风》</button><button class="chip" data-filter="非遗短视频《苏绣》">非遗短视频《苏绣》</button><button class="chip" data-filter="Canva 可画 TVC">Canva 可画 TVC</button><button class="chip" data-filter="《预制》">《预制》</button><button class="chip" data-filter="《上春山》">《上春山》</button><button class="chip" data-filter="《游泳》">《游泳》</button><button class="chip" data-filter="《何以为家》">《何以为家》</button><button class="chip" data-filter="《秋水揽星河》">《秋水揽星河》</button><button class="chip" data-filter="《寻金陵》">《寻金陵》</button><button class="chip" data-filter="《桃花桃花》">《桃花桃花》</button><button class="chip" data-filter="《我忘了片名叫什么》">《我忘了片名叫什么》</button><button class="chip" data-filter="《reborn》">《reborn》</button><button class="chip" data-filter="《风筝艺绘》">《风筝艺绘》</button><button class="chip" data-filter="《七号岩芯》">《七号岩芯》</button><button class="chip" data-filter="《大雾朦胧》">《大雾朦胧》</button><button class="chip" data-filter="《小勇士大冒险》">《小勇士大冒险》</button><button class="chip" data-filter="《盆栽》">《盆栽》</button><button class="chip" data-filter="大广赛《AD钙奶》">大广赛《AD钙奶》</button><button class="chip" data-filter="《永远》">《永远》</button><button class="chip" data-filter="《禾木》">《禾木》</button><button class="chip" data-filter="镜头测试片">镜头测试片</button><button class="chip" data-filter="《麻雀》">《麻雀》</button><button class="chip" data-filter="《你忘记了谁》">《你忘记了谁》</button><button class="chip" data-filter="南京艺术学院人文学院宣传片">南京艺术学院人文学院宣传片</button><button class="chip" data-filter="《守河人》">《守河人》</button><button class="chip" data-filter="《你向海 我向未来》">《你向海 我向未来》</button><button class="chip" data-filter="《你想活出怎样的人生》">《你想活出怎样的人生》</button><button class="chip" data-filter="《我会变成风来拥抱你》">《我会变成风来拥抱你》</button><button class="chip" data-filter="卡游 KAYOU · 王者荣耀">卡游 KAYOU · 王者荣耀</button>
+<button class="chip" data-filter="《无花果树下》">《无花果树下》</button><button class="chip" data-filter="在校与自由时期作品">在校与自由时期作品</button><button class="chip" data-filter="直播合作品牌">直播合作品牌</button>      </div>
+    </div>
+      <div class="album" data-work="封面">
+        <div class="album-header reveal"><h3 class="album-title">封面</h3></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page01_img02.jpg" data-title="封面" data-role="">
+            <img src="images/page01_img02.jpg" alt="封面" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page01_img04.jpg" data-title="封面" data-role="">
+            <img src="images/page01_img04.jpg" alt="封面" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="认证与平台">
+        <div class="album-header reveal"><h3 class="album-title">认证与平台</h3><span class="album-role">新片场签约 / 达芬奇认证</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page04_img02.jpg" data-title="认证与平台" data-role="新片场签约 / 达芬奇认证">
+            <img src="images/page04_img02.jpg" alt="认证与平台" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page04_img03.jpg" data-title="认证与平台" data-role="新片场签约 / 达芬奇认证">
+            <img src="images/page04_img03.jpg" alt="认证与平台" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page04_img04.jpg" data-title="认证与平台" data-role="新片场签约 / 达芬奇认证">
+            <img src="images/page04_img04.jpg" alt="认证与平台" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page04_img05.jpg" data-title="认证与平台" data-role="新片场签约 / 达芬奇认证">
+            <img src="images/page04_img05.jpg" alt="认证与平台" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page04_img06.jpg" data-title="认证与平台" data-role="新片场签约 / 达芬奇认证">
+            <img src="images/page04_img06.jpg" alt="认证与平台" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="部分作品展示">
+        <div class="album-header reveal"><h3 class="album-title">部分作品展示</h3><span class="album-role">按时间线排列</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page08_img03.jpg" data-title="部分作品展示" data-role="按时间线排列">
+            <img src="images/page08_img03.jpg" alt="部分作品展示" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page08_img04.jpg" data-title="部分作品展示" data-role="按时间线排列">
+            <img src="images/page08_img04.jpg" alt="部分作品展示" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《望天水》">
+        <div class="album-header reveal"><h3 class="album-title">《望天水》</h3><span class="album-role">灯光师 / 花絮师</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page09_img01.jpg" data-title="《望天水》" data-role="灯光师 / 花絮师">
+            <img src="images/page09_img01.jpg" alt="《望天水》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page09_img02.jpg" data-title="《望天水》" data-role="灯光师 / 花絮师">
+            <img src="images/page09_img02.jpg" alt="《望天水》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page09_img03.jpg" data-title="《望天水》" data-role="灯光师 / 花絮师">
+            <img src="images/page09_img03.jpg" alt="《望天水》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page09_img04.jpg" data-title="《望天水》" data-role="灯光师 / 花絮师">
+            <img src="images/page09_img04.jpg" alt="《望天水》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page09_img05.jpg" data-title="《望天水》" data-role="灯光师 / 花絮师">
+            <img src="images/page09_img05.jpg" alt="《望天水》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page09_img06.jpg" data-title="《望天水》" data-role="灯光师 / 花絮师">
+            <img src="images/page09_img06.jpg" alt="《望天水》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page09_img07.jpg" data-title="《望天水》" data-role="灯光师 / 花絮师">
+            <img src="images/page09_img07.jpg" alt="《望天水》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page09_img08.jpg" data-title="《望天水》" data-role="灯光师 / 花絮师">
+            <img src="images/page09_img08.jpg" alt="《望天水》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page09_img09.jpg" data-title="《望天水》" data-role="灯光师 / 花絮师">
+            <img src="images/page09_img09.jpg" alt="《望天水》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page09_img10.jpg" data-title="《望天水》" data-role="灯光师 / 花絮师">
+            <img src="images/page09_img10.jpg" alt="《望天水》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page09_img11.jpg" data-title="《望天水》" data-role="灯光师 / 花絮师">
+            <img src="images/page09_img11.jpg" alt="《望天水》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page09_img12.jpg" data-title="《望天水》" data-role="灯光师 / 花絮师">
+            <img src="images/page09_img12.jpg" alt="《望天水》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《图兰朵·心》">
+        <div class="album-header reveal"><h3 class="album-title">《图兰朵·心》</h3><span class="album-role">摄影 — 江苏省演艺集团京剧</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page10_img01.jpg" data-title="《图兰朵·心》" data-role="摄影 — 江苏省演艺集团京剧">
+            <img src="images/page10_img01.jpg" alt="《图兰朵·心》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page10_img08.jpg" data-title="《图兰朵·心》" data-role="摄影 — 江苏省演艺集团京剧">
+            <img src="images/page10_img08.jpg" alt="《图兰朵·心》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page10_img09.jpg" data-title="《图兰朵·心》" data-role="摄影 — 江苏省演艺集团京剧">
+            <img src="images/page10_img09.jpg" alt="《图兰朵·心》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page10_img10.jpg" data-title="《图兰朵·心》" data-role="摄影 — 江苏省演艺集团京剧">
+            <img src="images/page10_img10.jpg" alt="《图兰朵·心》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《紫丝带与红山茶》">
+        <div class="album-header reveal"><h3 class="album-title">《紫丝带与红山茶》</h3><span class="album-role">灯光</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page11_img01.jpg" data-title="《紫丝带与红山茶》" data-role="灯光">
+            <img src="images/page11_img01.jpg" alt="《紫丝带与红山茶》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page11_img02.jpg" data-title="《紫丝带与红山茶》" data-role="灯光">
+            <img src="images/page11_img02.jpg" alt="《紫丝带与红山茶》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page11_img03.jpg" data-title="《紫丝带与红山茶》" data-role="灯光">
+            <img src="images/page11_img03.jpg" alt="《紫丝带与红山茶》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page11_img04.jpg" data-title="《紫丝带与红山茶》" data-role="灯光">
+            <img src="images/page11_img04.jpg" alt="《紫丝带与红山茶》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page11_img05.jpg" data-title="《紫丝带与红山茶》" data-role="灯光">
+            <img src="images/page11_img05.jpg" alt="《紫丝带与红山茶》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《长夜绵绵》">
+        <div class="album-header reveal"><h3 class="album-title">《长夜绵绵》</h3><span class="album-role">灯光</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page12_img01.jpg" data-title="《长夜绵绵》" data-role="灯光">
+            <img src="images/page12_img01.jpg" alt="《长夜绵绵》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page12_img02.jpg" data-title="《长夜绵绵》" data-role="灯光">
+            <img src="images/page12_img02.jpg" alt="《长夜绵绵》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page12_img03.jpg" data-title="《长夜绵绵》" data-role="灯光">
+            <img src="images/page12_img03.jpg" alt="《长夜绵绵》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page12_img04.jpg" data-title="《长夜绵绵》" data-role="灯光">
+            <img src="images/page12_img04.jpg" alt="《长夜绵绵》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page12_img05.jpg" data-title="《长夜绵绵》" data-role="灯光">
+            <img src="images/page12_img05.jpg" alt="《长夜绵绵》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page12_img06.jpg" data-title="《长夜绵绵》" data-role="灯光">
+            <img src="images/page12_img06.jpg" alt="《长夜绵绵》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page12_img07.jpg" data-title="《长夜绵绵》" data-role="灯光">
+            <img src="images/page12_img07.jpg" alt="《长夜绵绵》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page12_img08.jpg" data-title="《长夜绵绵》" data-role="灯光">
+            <img src="images/page12_img08.jpg" alt="《长夜绵绵》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page12_img09.jpg" data-title="《长夜绵绵》" data-role="灯光">
+            <img src="images/page12_img09.jpg" alt="《长夜绵绵》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page12_img10.jpg" data-title="《长夜绵绵》" data-role="灯光">
+            <img src="images/page12_img10.jpg" alt="《长夜绵绵》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《浮白载笔》">
+        <div class="album-header reveal"><h3 class="album-title">《浮白载笔》</h3><span class="album-role">摄影指导</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page13_img01.jpg" data-title="《浮白载笔》" data-role="摄影指导">
+            <img src="images/page13_img01.jpg" alt="《浮白载笔》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page13_img02.jpg" data-title="《浮白载笔》" data-role="摄影指导">
+            <img src="images/page13_img02.jpg" alt="《浮白载笔》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page13_img03.jpg" data-title="《浮白载笔》" data-role="摄影指导">
+            <img src="images/page13_img03.jpg" alt="《浮白载笔》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page13_img04.jpg" data-title="《浮白载笔》" data-role="摄影指导">
+            <img src="images/page13_img04.jpg" alt="《浮白载笔》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page13_img05.jpg" data-title="《浮白载笔》" data-role="摄影指导">
+            <img src="images/page13_img05.jpg" alt="《浮白载笔》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page13_img06.jpg" data-title="《浮白载笔》" data-role="摄影指导">
+            <img src="images/page13_img06.jpg" alt="《浮白载笔》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page13_img07.jpg" data-title="《浮白载笔》" data-role="摄影指导">
+            <img src="images/page13_img07.jpg" alt="《浮白载笔》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page13_img08.jpg" data-title="《浮白载笔》" data-role="摄影指导">
+            <img src="images/page13_img08.jpg" alt="《浮白载笔》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page13_img09.jpg" data-title="《浮白载笔》" data-role="摄影指导">
+            <img src="images/page13_img09.jpg" alt="《浮白载笔》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page13_img10.jpg" data-title="《浮白载笔》" data-role="摄影指导">
+            <img src="images/page13_img10.jpg" alt="《浮白载笔》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page13_img11.jpg" data-title="《浮白载笔》" data-role="摄影指导">
+            <img src="images/page13_img11.jpg" alt="《浮白载笔》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page13_img12.jpg" data-title="《浮白载笔》" data-role="摄影指导">
+            <img src="images/page13_img12.jpg" alt="《浮白载笔》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="Kappa TVC">
+        <div class="album-header reveal"><h3 class="album-title">Kappa TVC</h3><span class="album-role">摄影</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page14_img01.jpg" data-title="Kappa TVC" data-role="摄影">
+            <img src="images/page14_img01.jpg" alt="Kappa TVC" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page14_img02.jpg" data-title="Kappa TVC" data-role="摄影">
+            <img src="images/page14_img02.jpg" alt="Kappa TVC" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page14_img03.jpg" data-title="Kappa TVC" data-role="摄影">
+            <img src="images/page14_img03.jpg" alt="Kappa TVC" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page14_img04.jpg" data-title="Kappa TVC" data-role="摄影">
+            <img src="images/page14_img04.jpg" alt="Kappa TVC" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page14_img05.jpg" data-title="Kappa TVC" data-role="摄影">
+            <img src="images/page14_img05.jpg" alt="Kappa TVC" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page14_img06.jpg" data-title="Kappa TVC" data-role="摄影">
+            <img src="images/page14_img06.jpg" alt="Kappa TVC" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="金典·春日有机生活节 TVC">
+        <div class="album-header reveal"><h3 class="album-title">金典·春日有机生活节 TVC</h3><span class="album-role">掌机</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page15_img01.jpg" data-title="金典·春日有机生活节 TVC" data-role="掌机">
+            <img src="images/page15_img01.jpg" alt="金典·春日有机生活节 TVC" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page15_img02.jpg" data-title="金典·春日有机生活节 TVC" data-role="掌机">
+            <img src="images/page15_img02.jpg" alt="金典·春日有机生活节 TVC" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《霓虹之下》">
+        <div class="album-header reveal"><h3 class="album-title">《霓虹之下》</h3><span class="album-role">掌机 — 监制 陈凯歌</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page16_img01.jpg" data-title="《霓虹之下》" data-role="掌机 — 监制 陈凯歌">
+            <img src="images/page16_img01.jpg" alt="《霓虹之下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page16_img02.jpg" data-title="《霓虹之下》" data-role="掌机 — 监制 陈凯歌">
+            <img src="images/page16_img02.jpg" alt="《霓虹之下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page16_img03.jpg" data-title="《霓虹之下》" data-role="掌机 — 监制 陈凯歌">
+            <img src="images/page16_img03.jpg" alt="《霓虹之下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《蔚然成风》">
+        <div class="album-header reveal"><h3 class="album-title">《蔚然成风》</h3><span class="album-role">制片人</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page17_img01.jpg" data-title="《蔚然成风》" data-role="制片人">
+            <img src="images/page17_img01.jpg" alt="《蔚然成风》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page17_img02.jpg" data-title="《蔚然成风》" data-role="制片人">
+            <img src="images/page17_img02.jpg" alt="《蔚然成风》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="非遗短视频《苏绣》">
+        <div class="album-header reveal"><h3 class="album-title">非遗短视频《苏绣》</h3><span class="album-role">摄影</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page18_img01.jpg" data-title="非遗短视频《苏绣》" data-role="摄影">
+            <img src="images/page18_img01.jpg" alt="非遗短视频《苏绣》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page18_img02.jpg" data-title="非遗短视频《苏绣》" data-role="摄影">
+            <img src="images/page18_img02.jpg" alt="非遗短视频《苏绣》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page18_img03.jpg" data-title="非遗短视频《苏绣》" data-role="摄影">
+            <img src="images/page18_img03.jpg" alt="非遗短视频《苏绣》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page18_img04.jpg" data-title="非遗短视频《苏绣》" data-role="摄影">
+            <img src="images/page18_img04.jpg" alt="非遗短视频《苏绣》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page18_img05.jpg" data-title="非遗短视频《苏绣》" data-role="摄影">
+            <img src="images/page18_img05.jpg" alt="非遗短视频《苏绣》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page18_img06.jpg" data-title="非遗短视频《苏绣》" data-role="摄影">
+            <img src="images/page18_img06.jpg" alt="非遗短视频《苏绣》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page18_img07.jpg" data-title="非遗短视频《苏绣》" data-role="摄影">
+            <img src="images/page18_img07.jpg" alt="非遗短视频《苏绣》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page18_img08.jpg" data-title="非遗短视频《苏绣》" data-role="摄影">
+            <img src="images/page18_img08.jpg" alt="非遗短视频《苏绣》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page18_img09.jpg" data-title="非遗短视频《苏绣》" data-role="摄影">
+            <img src="images/page18_img09.jpg" alt="非遗短视频《苏绣》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page18_img10.jpg" data-title="非遗短视频《苏绣》" data-role="摄影">
+            <img src="images/page18_img10.jpg" alt="非遗短视频《苏绣》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page18_img11.jpg" data-title="非遗短视频《苏绣》" data-role="摄影">
+            <img src="images/page18_img11.jpg" alt="非遗短视频《苏绣》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page18_img12.jpg" data-title="非遗短视频《苏绣》" data-role="摄影">
+            <img src="images/page18_img12.jpg" alt="非遗短视频《苏绣》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page18_img13.jpg" data-title="非遗短视频《苏绣》" data-role="摄影">
+            <img src="images/page18_img13.jpg" alt="非遗短视频《苏绣》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page18_img14.jpg" data-title="非遗短视频《苏绣》" data-role="摄影">
+            <img src="images/page18_img14.jpg" alt="非遗短视频《苏绣》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page18_img15.jpg" data-title="非遗短视频《苏绣》" data-role="摄影">
+            <img src="images/page18_img15.jpg" alt="非遗短视频《苏绣》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="Canva 可画 TVC">
+        <div class="album-header reveal"><h3 class="album-title">Canva 可画 TVC</h3><span class="album-role">摄影指导</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page19_img01.jpg" data-title="Canva 可画 TVC" data-role="摄影指导">
+            <img src="images/page19_img01.jpg" alt="Canva 可画 TVC" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page19_img02.jpg" data-title="Canva 可画 TVC" data-role="摄影指导">
+            <img src="images/page19_img02.jpg" alt="Canva 可画 TVC" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page19_img03.jpg" data-title="Canva 可画 TVC" data-role="摄影指导">
+            <img src="images/page19_img03.jpg" alt="Canva 可画 TVC" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page19_img04.jpg" data-title="Canva 可画 TVC" data-role="摄影指导">
+            <img src="images/page19_img04.jpg" alt="Canva 可画 TVC" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page19_img05.jpg" data-title="Canva 可画 TVC" data-role="摄影指导">
+            <img src="images/page19_img05.jpg" alt="Canva 可画 TVC" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page19_img06.jpg" data-title="Canva 可画 TVC" data-role="摄影指导">
+            <img src="images/page19_img06.jpg" alt="Canva 可画 TVC" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page19_img07.jpg" data-title="Canva 可画 TVC" data-role="摄影指导">
+            <img src="images/page19_img07.jpg" alt="Canva 可画 TVC" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page19_img08.jpg" data-title="Canva 可画 TVC" data-role="摄影指导">
+            <img src="images/page19_img08.jpg" alt="Canva 可画 TVC" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《预制》">
+        <div class="album-header reveal"><h3 class="album-title">《预制》</h3><span class="album-role">导演 / 摄影指导 — 澳门国际微电影节入围</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page20_img01.jpg" data-title="《预制》" data-role="导演 / 摄影指导 — 澳门国际微电影节入围">
+            <img src="images/page20_img01.jpg" alt="《预制》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page20_img02.jpg" data-title="《预制》" data-role="导演 / 摄影指导 — 澳门国际微电影节入围">
+            <img src="images/page20_img02.jpg" alt="《预制》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page20_img03.jpg" data-title="《预制》" data-role="导演 / 摄影指导 — 澳门国际微电影节入围">
+            <img src="images/page20_img03.jpg" alt="《预制》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page20_img04.jpg" data-title="《预制》" data-role="导演 / 摄影指导 — 澳门国际微电影节入围">
+            <img src="images/page20_img04.jpg" alt="《预制》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page20_img05.jpg" data-title="《预制》" data-role="导演 / 摄影指导 — 澳门国际微电影节入围">
+            <img src="images/page20_img05.jpg" alt="《预制》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page20_img06.jpg" data-title="《预制》" data-role="导演 / 摄影指导 — 澳门国际微电影节入围">
+            <img src="images/page20_img06.jpg" alt="《预制》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page20_img07.jpg" data-title="《预制》" data-role="导演 / 摄影指导 — 澳门国际微电影节入围">
+            <img src="images/page20_img07.jpg" alt="《预制》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page20_img08.jpg" data-title="《预制》" data-role="导演 / 摄影指导 — 澳门国际微电影节入围">
+            <img src="images/page20_img08.jpg" alt="《预制》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《上春山》">
+        <div class="album-header reveal"><h3 class="album-title">《上春山》</h3><span class="album-role">摄影</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page21_img01.jpg" data-title="《上春山》" data-role="摄影">
+            <img src="images/page21_img01.jpg" alt="《上春山》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page21_img02.jpg" data-title="《上春山》" data-role="摄影">
+            <img src="images/page21_img02.jpg" alt="《上春山》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page21_img03.jpg" data-title="《上春山》" data-role="摄影">
+            <img src="images/page21_img03.jpg" alt="《上春山》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《游泳》">
+        <div class="album-header reveal"><h3 class="album-title">《游泳》</h3><span class="album-role">摄影</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page22_img01.jpg" data-title="《游泳》" data-role="摄影">
+            <img src="images/page22_img01.jpg" alt="《游泳》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page22_img02.jpg" data-title="《游泳》" data-role="摄影">
+            <img src="images/page22_img02.jpg" alt="《游泳》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page22_img03.jpg" data-title="《游泳》" data-role="摄影">
+            <img src="images/page22_img03.jpg" alt="《游泳》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page22_img04.jpg" data-title="《游泳》" data-role="摄影">
+            <img src="images/page22_img04.jpg" alt="《游泳》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page22_img05.jpg" data-title="《游泳》" data-role="摄影">
+            <img src="images/page22_img05.jpg" alt="《游泳》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page22_img06.jpg" data-title="《游泳》" data-role="摄影">
+            <img src="images/page22_img06.jpg" alt="《游泳》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page22_img07.jpg" data-title="《游泳》" data-role="摄影">
+            <img src="images/page22_img07.jpg" alt="《游泳》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page22_img08.jpg" data-title="《游泳》" data-role="摄影">
+            <img src="images/page22_img08.jpg" alt="《游泳》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page22_img09.jpg" data-title="《游泳》" data-role="摄影">
+            <img src="images/page22_img09.jpg" alt="《游泳》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《何以为家》">
+        <div class="album-header reveal"><h3 class="album-title">《何以为家》</h3><span class="album-role">制片人</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page23_img01.jpg" data-title="《何以为家》" data-role="制片人">
+            <img src="images/page23_img01.jpg" alt="《何以为家》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page23_img02.jpg" data-title="《何以为家》" data-role="制片人">
+            <img src="images/page23_img02.jpg" alt="《何以为家》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page23_img03.jpg" data-title="《何以为家》" data-role="制片人">
+            <img src="images/page23_img03.jpg" alt="《何以为家》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page23_img04.jpg" data-title="《何以为家》" data-role="制片人">
+            <img src="images/page23_img04.jpg" alt="《何以为家》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page23_img05.jpg" data-title="《何以为家》" data-role="制片人">
+            <img src="images/page23_img05.jpg" alt="《何以为家》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page23_img06.jpg" data-title="《何以为家》" data-role="制片人">
+            <img src="images/page23_img06.jpg" alt="《何以为家》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page23_img07.jpg" data-title="《何以为家》" data-role="制片人">
+            <img src="images/page23_img07.jpg" alt="《何以为家》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page23_img08.jpg" data-title="《何以为家》" data-role="制片人">
+            <img src="images/page23_img08.jpg" alt="《何以为家》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page23_img09.jpg" data-title="《何以为家》" data-role="制片人">
+            <img src="images/page23_img09.jpg" alt="《何以为家》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《秋水揽星河》">
+        <div class="album-header reveal"><h3 class="album-title">《秋水揽星河》</h3><span class="album-role">摄影指导 — 红果短剧</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page24_img01.jpg" data-title="《秋水揽星河》" data-role="摄影指导 — 红果短剧">
+            <img src="images/page24_img01.jpg" alt="《秋水揽星河》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page24_img02.jpg" data-title="《秋水揽星河》" data-role="摄影指导 — 红果短剧">
+            <img src="images/page24_img02.jpg" alt="《秋水揽星河》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page24_img03.jpg" data-title="《秋水揽星河》" data-role="摄影指导 — 红果短剧">
+            <img src="images/page24_img03.jpg" alt="《秋水揽星河》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page24_img04.jpg" data-title="《秋水揽星河》" data-role="摄影指导 — 红果短剧">
+            <img src="images/page24_img04.jpg" alt="《秋水揽星河》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page24_img05.jpg" data-title="《秋水揽星河》" data-role="摄影指导 — 红果短剧">
+            <img src="images/page24_img05.jpg" alt="《秋水揽星河》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page24_img06.jpg" data-title="《秋水揽星河》" data-role="摄影指导 — 红果短剧">
+            <img src="images/page24_img06.jpg" alt="《秋水揽星河》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page24_img07.jpg" data-title="《秋水揽星河》" data-role="摄影指导 — 红果短剧">
+            <img src="images/page24_img07.jpg" alt="《秋水揽星河》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page24_img08.jpg" data-title="《秋水揽星河》" data-role="摄影指导 — 红果短剧">
+            <img src="images/page24_img08.jpg" alt="《秋水揽星河》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page24_img09.jpg" data-title="《秋水揽星河》" data-role="摄影指导 — 红果短剧">
+            <img src="images/page24_img09.jpg" alt="《秋水揽星河》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page24_img10.jpg" data-title="《秋水揽星河》" data-role="摄影指导 — 红果短剧">
+            <img src="images/page24_img10.jpg" alt="《秋水揽星河》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page24_img11.jpg" data-title="《秋水揽星河》" data-role="摄影指导 — 红果短剧">
+            <img src="images/page24_img11.jpg" alt="《秋水揽星河》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page24_img12.jpg" data-title="《秋水揽星河》" data-role="摄影指导 — 红果短剧">
+            <img src="images/page24_img12.jpg" alt="《秋水揽星河》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《寻金陵》">
+        <div class="album-header reveal"><h3 class="album-title">《寻金陵》</h3><span class="album-role">导演 / 摄影</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page25_img01.jpg" data-title="《寻金陵》" data-role="导演 / 摄影">
+            <img src="images/page25_img01.jpg" alt="《寻金陵》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page25_img02.jpg" data-title="《寻金陵》" data-role="导演 / 摄影">
+            <img src="images/page25_img02.jpg" alt="《寻金陵》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page25_img03.jpg" data-title="《寻金陵》" data-role="导演 / 摄影">
+            <img src="images/page25_img03.jpg" alt="《寻金陵》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page25_img04.jpg" data-title="《寻金陵》" data-role="导演 / 摄影">
+            <img src="images/page25_img04.jpg" alt="《寻金陵》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page25_img05.jpg" data-title="《寻金陵》" data-role="导演 / 摄影">
+            <img src="images/page25_img05.jpg" alt="《寻金陵》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page25_img06.jpg" data-title="《寻金陵》" data-role="导演 / 摄影">
+            <img src="images/page25_img06.jpg" alt="《寻金陵》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page25_img07.jpg" data-title="《寻金陵》" data-role="导演 / 摄影">
+            <img src="images/page25_img07.jpg" alt="《寻金陵》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page25_img08.jpg" data-title="《寻金陵》" data-role="导演 / 摄影">
+            <img src="images/page25_img08.jpg" alt="《寻金陵》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page25_img09.jpg" data-title="《寻金陵》" data-role="导演 / 摄影">
+            <img src="images/page25_img09.jpg" alt="《寻金陵》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《桃花桃花》">
+        <div class="album-header reveal"><h3 class="album-title">《桃花桃花》</h3><span class="album-role">摄影指导</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page26_img01.jpg" data-title="《桃花桃花》" data-role="摄影指导">
+            <img src="images/page26_img01.jpg" alt="《桃花桃花》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page26_img02.jpg" data-title="《桃花桃花》" data-role="摄影指导">
+            <img src="images/page26_img02.jpg" alt="《桃花桃花》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page26_img03.jpg" data-title="《桃花桃花》" data-role="摄影指导">
+            <img src="images/page26_img03.jpg" alt="《桃花桃花》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page26_img04.jpg" data-title="《桃花桃花》" data-role="摄影指导">
+            <img src="images/page26_img04.jpg" alt="《桃花桃花》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page26_img05.jpg" data-title="《桃花桃花》" data-role="摄影指导">
+            <img src="images/page26_img05.jpg" alt="《桃花桃花》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page26_img06.jpg" data-title="《桃花桃花》" data-role="摄影指导">
+            <img src="images/page26_img06.jpg" alt="《桃花桃花》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page26_img07.jpg" data-title="《桃花桃花》" data-role="摄影指导">
+            <img src="images/page26_img07.jpg" alt="《桃花桃花》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page26_img08.jpg" data-title="《桃花桃花》" data-role="摄影指导">
+            <img src="images/page26_img08.jpg" alt="《桃花桃花》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《我忘了片名叫什么》">
+        <div class="album-header reveal"><h3 class="album-title">《我忘了片名叫什么》</h3><span class="album-role">摄影指导</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page27_img01.jpg" data-title="《我忘了片名叫什么》" data-role="摄影指导">
+            <img src="images/page27_img01.jpg" alt="《我忘了片名叫什么》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page27_img02.jpg" data-title="《我忘了片名叫什么》" data-role="摄影指导">
+            <img src="images/page27_img02.jpg" alt="《我忘了片名叫什么》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page27_img03.jpg" data-title="《我忘了片名叫什么》" data-role="摄影指导">
+            <img src="images/page27_img03.jpg" alt="《我忘了片名叫什么》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page27_img04.jpg" data-title="《我忘了片名叫什么》" data-role="摄影指导">
+            <img src="images/page27_img04.jpg" alt="《我忘了片名叫什么》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page27_img05.jpg" data-title="《我忘了片名叫什么》" data-role="摄影指导">
+            <img src="images/page27_img05.jpg" alt="《我忘了片名叫什么》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page27_img06.jpg" data-title="《我忘了片名叫什么》" data-role="摄影指导">
+            <img src="images/page27_img06.jpg" alt="《我忘了片名叫什么》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page27_img07.jpg" data-title="《我忘了片名叫什么》" data-role="摄影指导">
+            <img src="images/page27_img07.jpg" alt="《我忘了片名叫什么》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page27_img08.jpg" data-title="《我忘了片名叫什么》" data-role="摄影指导">
+            <img src="images/page27_img08.jpg" alt="《我忘了片名叫什么》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page27_img09.jpg" data-title="《我忘了片名叫什么》" data-role="摄影指导">
+            <img src="images/page27_img09.jpg" alt="《我忘了片名叫什么》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《reborn》">
+        <div class="album-header reveal"><h3 class="album-title">《reborn》</h3><span class="album-role">摄影指导</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page28_img01.jpg" data-title="《reborn》" data-role="摄影指导">
+            <img src="images/page28_img01.jpg" alt="《reborn》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page28_img02.jpg" data-title="《reborn》" data-role="摄影指导">
+            <img src="images/page28_img02.jpg" alt="《reborn》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page28_img03.jpg" data-title="《reborn》" data-role="摄影指导">
+            <img src="images/page28_img03.jpg" alt="《reborn》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page28_img04.jpg" data-title="《reborn》" data-role="摄影指导">
+            <img src="images/page28_img04.jpg" alt="《reborn》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page28_img05.jpg" data-title="《reborn》" data-role="摄影指导">
+            <img src="images/page28_img05.jpg" alt="《reborn》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《风筝艺绘》">
+        <div class="album-header reveal"><h3 class="album-title">《风筝艺绘》</h3><span class="album-role">摄影指导</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page29_img01.jpg" data-title="《风筝艺绘》" data-role="摄影指导">
+            <img src="images/page29_img01.jpg" alt="《风筝艺绘》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page29_img02.jpg" data-title="《风筝艺绘》" data-role="摄影指导">
+            <img src="images/page29_img02.jpg" alt="《风筝艺绘》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page29_img03.jpg" data-title="《风筝艺绘》" data-role="摄影指导">
+            <img src="images/page29_img03.jpg" alt="《风筝艺绘》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page29_img04.jpg" data-title="《风筝艺绘》" data-role="摄影指导">
+            <img src="images/page29_img04.jpg" alt="《风筝艺绘》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page29_img05.jpg" data-title="《风筝艺绘》" data-role="摄影指导">
+            <img src="images/page29_img05.jpg" alt="《风筝艺绘》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page29_img06.jpg" data-title="《风筝艺绘》" data-role="摄影指导">
+            <img src="images/page29_img06.jpg" alt="《风筝艺绘》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page29_img07.jpg" data-title="《风筝艺绘》" data-role="摄影指导">
+            <img src="images/page29_img07.jpg" alt="《风筝艺绘》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page29_img08.jpg" data-title="《风筝艺绘》" data-role="摄影指导">
+            <img src="images/page29_img08.jpg" alt="《风筝艺绘》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page29_img09.jpg" data-title="《风筝艺绘》" data-role="摄影指导">
+            <img src="images/page29_img09.jpg" alt="《风筝艺绘》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《七号岩芯》">
+        <div class="album-header reveal"><h3 class="album-title">《七号岩芯》</h3><span class="album-role">摄影指导</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page30_img01.jpg" data-title="《七号岩芯》" data-role="摄影指导">
+            <img src="images/page30_img01.jpg" alt="《七号岩芯》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page30_img02.jpg" data-title="《七号岩芯》" data-role="摄影指导">
+            <img src="images/page30_img02.jpg" alt="《七号岩芯》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page30_img03.jpg" data-title="《七号岩芯》" data-role="摄影指导">
+            <img src="images/page30_img03.jpg" alt="《七号岩芯》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page30_img04.jpg" data-title="《七号岩芯》" data-role="摄影指导">
+            <img src="images/page30_img04.jpg" alt="《七号岩芯》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page30_img05.jpg" data-title="《七号岩芯》" data-role="摄影指导">
+            <img src="images/page30_img05.jpg" alt="《七号岩芯》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page30_img06.jpg" data-title="《七号岩芯》" data-role="摄影指导">
+            <img src="images/page30_img06.jpg" alt="《七号岩芯》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page30_img07.jpg" data-title="《七号岩芯》" data-role="摄影指导">
+            <img src="images/page30_img07.jpg" alt="《七号岩芯》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page30_img08.jpg" data-title="《七号岩芯》" data-role="摄影指导">
+            <img src="images/page30_img08.jpg" alt="《七号岩芯》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《大雾朦胧》">
+        <div class="album-header reveal"><h3 class="album-title">《大雾朦胧》</h3><span class="album-role">掌机 — 莫斯科国际电影节入围</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page31_img01.jpg" data-title="《大雾朦胧》" data-role="掌机 — 莫斯科国际电影节入围">
+            <img src="images/page31_img01.jpg" alt="《大雾朦胧》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page31_img02.jpg" data-title="《大雾朦胧》" data-role="掌机 — 莫斯科国际电影节入围">
+            <img src="images/page31_img02.jpg" alt="《大雾朦胧》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page31_img03.jpg" data-title="《大雾朦胧》" data-role="掌机 — 莫斯科国际电影节入围">
+            <img src="images/page31_img03.jpg" alt="《大雾朦胧》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page31_img04.jpg" data-title="《大雾朦胧》" data-role="掌机 — 莫斯科国际电影节入围">
+            <img src="images/page31_img04.jpg" alt="《大雾朦胧》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page31_img05.jpg" data-title="《大雾朦胧》" data-role="掌机 — 莫斯科国际电影节入围">
+            <img src="images/page31_img05.jpg" alt="《大雾朦胧》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《小勇士大冒险》">
+        <div class="album-header reveal"><h3 class="album-title">《小勇士大冒险》</h3><span class="album-role">摄影指导</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page32_img01.jpg" data-title="《小勇士大冒险》" data-role="摄影指导">
+            <img src="images/page32_img01.jpg" alt="《小勇士大冒险》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page32_img02.jpg" data-title="《小勇士大冒险》" data-role="摄影指导">
+            <img src="images/page32_img02.jpg" alt="《小勇士大冒险》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page32_img03.jpg" data-title="《小勇士大冒险》" data-role="摄影指导">
+            <img src="images/page32_img03.jpg" alt="《小勇士大冒险》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page32_img04.jpg" data-title="《小勇士大冒险》" data-role="摄影指导">
+            <img src="images/page32_img04.jpg" alt="《小勇士大冒险》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page32_img05.jpg" data-title="《小勇士大冒险》" data-role="摄影指导">
+            <img src="images/page32_img05.jpg" alt="《小勇士大冒险》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page32_img06.jpg" data-title="《小勇士大冒险》" data-role="摄影指导">
+            <img src="images/page32_img06.jpg" alt="《小勇士大冒险》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page32_img07.jpg" data-title="《小勇士大冒险》" data-role="摄影指导">
+            <img src="images/page32_img07.jpg" alt="《小勇士大冒险》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page32_img08.jpg" data-title="《小勇士大冒险》" data-role="摄影指导">
+            <img src="images/page32_img08.jpg" alt="《小勇士大冒险》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page32_img09.jpg" data-title="《小勇士大冒险》" data-role="摄影指导">
+            <img src="images/page32_img09.jpg" alt="《小勇士大冒险》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《盆栽》">
+        <div class="album-header reveal"><h3 class="album-title">《盆栽》</h3><span class="album-role">制片人 / 摄影</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page33_img01.jpg" data-title="《盆栽》" data-role="制片人 / 摄影">
+            <img src="images/page33_img01.jpg" alt="《盆栽》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page33_img02.jpg" data-title="《盆栽》" data-role="制片人 / 摄影">
+            <img src="images/page33_img02.jpg" alt="《盆栽》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page33_img03.jpg" data-title="《盆栽》" data-role="制片人 / 摄影">
+            <img src="images/page33_img03.jpg" alt="《盆栽》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page33_img04.jpg" data-title="《盆栽》" data-role="制片人 / 摄影">
+            <img src="images/page33_img04.jpg" alt="《盆栽》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="大广赛《AD钙奶》">
+        <div class="album-header reveal"><h3 class="album-title">大广赛《AD钙奶》</h3></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page34_img01.jpg" data-title="大广赛《AD钙奶》" data-role="">
+            <img src="images/page34_img01.jpg" alt="大广赛《AD钙奶》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page34_img02.jpg" data-title="大广赛《AD钙奶》" data-role="">
+            <img src="images/page34_img02.jpg" alt="大广赛《AD钙奶》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page34_img03.jpg" data-title="大广赛《AD钙奶》" data-role="">
+            <img src="images/page34_img03.jpg" alt="大广赛《AD钙奶》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page34_img04.jpg" data-title="大广赛《AD钙奶》" data-role="">
+            <img src="images/page34_img04.jpg" alt="大广赛《AD钙奶》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《永远》">
+        <div class="album-header reveal"><h3 class="album-title">《永远》</h3><span class="album-role">灯光 — LAFA Winner</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page35_img01.jpg" data-title="《永远》" data-role="灯光 — LAFA Winner">
+            <img src="images/page35_img01.jpg" alt="《永远》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page35_img02.jpg" data-title="《永远》" data-role="灯光 — LAFA Winner">
+            <img src="images/page35_img02.jpg" alt="《永远》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page35_img03.jpg" data-title="《永远》" data-role="灯光 — LAFA Winner">
+            <img src="images/page35_img03.jpg" alt="《永远》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page35_img04.jpg" data-title="《永远》" data-role="灯光 — LAFA Winner">
+            <img src="images/page35_img04.jpg" alt="《永远》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page35_img05.jpg" data-title="《永远》" data-role="灯光 — LAFA Winner">
+            <img src="images/page35_img05.jpg" alt="《永远》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page35_img06.jpg" data-title="《永远》" data-role="灯光 — LAFA Winner">
+            <img src="images/page35_img06.jpg" alt="《永远》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page35_img07.jpg" data-title="《永远》" data-role="灯光 — LAFA Winner">
+            <img src="images/page35_img07.jpg" alt="《永远》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《禾木》">
+        <div class="album-header reveal"><h3 class="album-title">《禾木》</h3><span class="album-role">制片人</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page36_img01.jpg" data-title="《禾木》" data-role="制片人">
+            <img src="images/page36_img01.jpg" alt="《禾木》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page36_img02.jpg" data-title="《禾木》" data-role="制片人">
+            <img src="images/page36_img02.jpg" alt="《禾木》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page36_img03.jpg" data-title="《禾木》" data-role="制片人">
+            <img src="images/page36_img03.jpg" alt="《禾木》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page36_img04.jpg" data-title="《禾木》" data-role="制片人">
+            <img src="images/page36_img04.jpg" alt="《禾木》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="镜头测试片">
+        <div class="album-header reveal"><h3 class="album-title">镜头测试片</h3></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page37_img02.jpg" data-title="镜头测试片" data-role="">
+            <img src="images/page37_img02.jpg" alt="镜头测试片" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page37_img03.jpg" data-title="镜头测试片" data-role="">
+            <img src="images/page37_img03.jpg" alt="镜头测试片" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page37_img04.jpg" data-title="镜头测试片" data-role="">
+            <img src="images/page37_img04.jpg" alt="镜头测试片" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《麻雀》">
+        <div class="album-header reveal"><h3 class="album-title">《麻雀》</h3><span class="album-role">灯光 — 澳门国际微电影节入围</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page38_img01.jpg" data-title="《麻雀》" data-role="灯光 — 澳门国际微电影节入围">
+            <img src="images/page38_img01.jpg" alt="《麻雀》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page38_img02.jpg" data-title="《麻雀》" data-role="灯光 — 澳门国际微电影节入围">
+            <img src="images/page38_img02.jpg" alt="《麻雀》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page38_img03.jpg" data-title="《麻雀》" data-role="灯光 — 澳门国际微电影节入围">
+            <img src="images/page38_img03.jpg" alt="《麻雀》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page38_img04.jpg" data-title="《麻雀》" data-role="灯光 — 澳门国际微电影节入围">
+            <img src="images/page38_img04.jpg" alt="《麻雀》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page38_img05.jpg" data-title="《麻雀》" data-role="灯光 — 澳门国际微电影节入围">
+            <img src="images/page38_img05.jpg" alt="《麻雀》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page38_img06.jpg" data-title="《麻雀》" data-role="灯光 — 澳门国际微电影节入围">
+            <img src="images/page38_img06.jpg" alt="《麻雀》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page38_img07.jpg" data-title="《麻雀》" data-role="灯光 — 澳门国际微电影节入围">
+            <img src="images/page38_img07.jpg" alt="《麻雀》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page38_img08.jpg" data-title="《麻雀》" data-role="灯光 — 澳门国际微电影节入围">
+            <img src="images/page38_img08.jpg" alt="《麻雀》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page38_img09.jpg" data-title="《麻雀》" data-role="灯光 — 澳门国际微电影节入围">
+            <img src="images/page38_img09.jpg" alt="《麻雀》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《你忘记了谁》">
+        <div class="album-header reveal"><h3 class="album-title">《你忘记了谁》</h3><span class="album-role">摄影 / 灯光</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page39_img01.jpg" data-title="《你忘记了谁》" data-role="摄影 / 灯光">
+            <img src="images/page39_img01.jpg" alt="《你忘记了谁》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page39_img02.jpg" data-title="《你忘记了谁》" data-role="摄影 / 灯光">
+            <img src="images/page39_img02.jpg" alt="《你忘记了谁》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="南京艺术学院人文学院宣传片">
+        <div class="album-header reveal"><h3 class="album-title">南京艺术学院人文学院宣传片</h3><span class="album-role">导演</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page40_img01.jpg" data-title="南京艺术学院人文学院宣传片" data-role="导演">
+            <img src="images/page40_img01.jpg" alt="南京艺术学院人文学院宣传片" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page40_img02.jpg" data-title="南京艺术学院人文学院宣传片" data-role="导演">
+            <img src="images/page40_img02.jpg" alt="南京艺术学院人文学院宣传片" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page40_img03.jpg" data-title="南京艺术学院人文学院宣传片" data-role="导演">
+            <img src="images/page40_img03.jpg" alt="南京艺术学院人文学院宣传片" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page40_img04.jpg" data-title="南京艺术学院人文学院宣传片" data-role="导演">
+            <img src="images/page40_img04.jpg" alt="南京艺术学院人文学院宣传片" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page40_img05.jpg" data-title="南京艺术学院人文学院宣传片" data-role="导演">
+            <img src="images/page40_img05.jpg" alt="南京艺术学院人文学院宣传片" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page40_img06.jpg" data-title="南京艺术学院人文学院宣传片" data-role="导演">
+            <img src="images/page40_img06.jpg" alt="南京艺术学院人文学院宣传片" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《守河人》">
+        <div class="album-header reveal"><h3 class="album-title">《守河人》</h3><span class="album-role">摄影指导</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page41_img01.jpg" data-title="《守河人》" data-role="摄影指导">
+            <img src="images/page41_img01.jpg" alt="《守河人》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page41_img02.jpg" data-title="《守河人》" data-role="摄影指导">
+            <img src="images/page41_img02.jpg" alt="《守河人》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page41_img03.jpg" data-title="《守河人》" data-role="摄影指导">
+            <img src="images/page41_img03.jpg" alt="《守河人》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page41_img04.jpg" data-title="《守河人》" data-role="摄影指导">
+            <img src="images/page41_img04.jpg" alt="《守河人》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page41_img05.jpg" data-title="《守河人》" data-role="摄影指导">
+            <img src="images/page41_img05.jpg" alt="《守河人》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page41_img06.jpg" data-title="《守河人》" data-role="摄影指导">
+            <img src="images/page41_img06.jpg" alt="《守河人》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page41_img07.jpg" data-title="《守河人》" data-role="摄影指导">
+            <img src="images/page41_img07.jpg" alt="《守河人》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page41_img08.jpg" data-title="《守河人》" data-role="摄影指导">
+            <img src="images/page41_img08.jpg" alt="《守河人》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page41_img09.jpg" data-title="《守河人》" data-role="摄影指导">
+            <img src="images/page41_img09.jpg" alt="《守河人》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《你向海 我向未来》">
+        <div class="album-header reveal"><h3 class="album-title">《你向海 我向未来》</h3><span class="album-role">航拍 / 摄影师 — 南京长江隧道15周年</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page42_img01.jpg" data-title="《你向海 我向未来》" data-role="航拍 / 摄影师 — 南京长江隧道15周年">
+            <img src="images/page42_img01.jpg" alt="《你向海 我向未来》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page42_img02.jpg" data-title="《你向海 我向未来》" data-role="航拍 / 摄影师 — 南京长江隧道15周年">
+            <img src="images/page42_img02.jpg" alt="《你向海 我向未来》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page42_img03.jpg" data-title="《你向海 我向未来》" data-role="航拍 / 摄影师 — 南京长江隧道15周年">
+            <img src="images/page42_img03.jpg" alt="《你向海 我向未来》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page42_img04.jpg" data-title="《你向海 我向未来》" data-role="航拍 / 摄影师 — 南京长江隧道15周年">
+            <img src="images/page42_img04.jpg" alt="《你向海 我向未来》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page42_img05.jpg" data-title="《你向海 我向未来》" data-role="航拍 / 摄影师 — 南京长江隧道15周年">
+            <img src="images/page42_img05.jpg" alt="《你向海 我向未来》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page42_img06.jpg" data-title="《你向海 我向未来》" data-role="航拍 / 摄影师 — 南京长江隧道15周年">
+            <img src="images/page42_img06.jpg" alt="《你向海 我向未来》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page42_img07.jpg" data-title="《你向海 我向未来》" data-role="航拍 / 摄影师 — 南京长江隧道15周年">
+            <img src="images/page42_img07.jpg" alt="《你向海 我向未来》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page42_img08.jpg" data-title="《你向海 我向未来》" data-role="航拍 / 摄影师 — 南京长江隧道15周年">
+            <img src="images/page42_img08.jpg" alt="《你向海 我向未来》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page42_img09.jpg" data-title="《你向海 我向未来》" data-role="航拍 / 摄影师 — 南京长江隧道15周年">
+            <img src="images/page42_img09.jpg" alt="《你向海 我向未来》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page42_img10.jpg" data-title="《你向海 我向未来》" data-role="航拍 / 摄影师 — 南京长江隧道15周年">
+            <img src="images/page42_img10.jpg" alt="《你向海 我向未来》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page42_img11.jpg" data-title="《你向海 我向未来》" data-role="航拍 / 摄影师 — 南京长江隧道15周年">
+            <img src="images/page42_img11.jpg" alt="《你向海 我向未来》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page42_img12.jpg" data-title="《你向海 我向未来》" data-role="航拍 / 摄影师 — 南京长江隧道15周年">
+            <img src="images/page42_img12.jpg" alt="《你向海 我向未来》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《你想活出怎样的人生》">
+        <div class="album-header reveal"><h3 class="album-title">《你想活出怎样的人生》</h3><span class="album-role">灯光</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page43_img01.jpg" data-title="《你想活出怎样的人生》" data-role="灯光">
+            <img src="images/page43_img01.jpg" alt="《你想活出怎样的人生》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page43_img02.jpg" data-title="《你想活出怎样的人生》" data-role="灯光">
+            <img src="images/page43_img02.jpg" alt="《你想活出怎样的人生》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page43_img03.jpg" data-title="《你想活出怎样的人生》" data-role="灯光">
+            <img src="images/page43_img03.jpg" alt="《你想活出怎样的人生》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page43_img04.jpg" data-title="《你想活出怎样的人生》" data-role="灯光">
+            <img src="images/page43_img04.jpg" alt="《你想活出怎样的人生》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page43_img05.jpg" data-title="《你想活出怎样的人生》" data-role="灯光">
+            <img src="images/page43_img05.jpg" alt="《你想活出怎样的人生》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page43_img06.jpg" data-title="《你想活出怎样的人生》" data-role="灯光">
+            <img src="images/page43_img06.jpg" alt="《你想活出怎样的人生》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="《我会变成风来拥抱你》">
+        <div class="album-header reveal"><h3 class="album-title">《我会变成风来拥抱你》</h3><span class="album-role">摄影师 / 剪辑</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page44_img01.jpg" data-title="《我会变成风来拥抱你》" data-role="摄影师 / 剪辑">
+            <img src="images/page44_img01.jpg" alt="《我会变成风来拥抱你》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page44_img02.jpg" data-title="《我会变成风来拥抱你》" data-role="摄影师 / 剪辑">
+            <img src="images/page44_img02.jpg" alt="《我会变成风来拥抱你》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page44_img03.jpg" data-title="《我会变成风来拥抱你》" data-role="摄影师 / 剪辑">
+            <img src="images/page44_img03.jpg" alt="《我会变成风来拥抱你》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page44_img04.jpg" data-title="《我会变成风来拥抱你》" data-role="摄影师 / 剪辑">
+            <img src="images/page44_img04.jpg" alt="《我会变成风来拥抱你》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page44_img05.jpg" data-title="《我会变成风来拥抱你》" data-role="摄影师 / 剪辑">
+            <img src="images/page44_img05.jpg" alt="《我会变成风来拥抱你》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page44_img06.jpg" data-title="《我会变成风来拥抱你》" data-role="摄影师 / 剪辑">
+            <img src="images/page44_img06.jpg" alt="《我会变成风来拥抱你》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page44_img07.jpg" data-title="《我会变成风来拥抱你》" data-role="摄影师 / 剪辑">
+            <img src="images/page44_img07.jpg" alt="《我会变成风来拥抱你》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page44_img08.jpg" data-title="《我会变成风来拥抱你》" data-role="摄影师 / 剪辑">
+            <img src="images/page44_img08.jpg" alt="《我会变成风来拥抱你》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page44_img09.jpg" data-title="《我会变成风来拥抱你》" data-role="摄影师 / 剪辑">
+            <img src="images/page44_img09.jpg" alt="《我会变成风来拥抱你》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page44_img10.jpg" data-title="《我会变成风来拥抱你》" data-role="摄影师 / 剪辑">
+            <img src="images/page44_img10.jpg" alt="《我会变成风来拥抱你》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="卡游 KAYOU · 王者荣耀">
+        <div class="album-header reveal"><h3 class="album-title">卡游 KAYOU · 王者荣耀</h3></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page47_img02.jpg" data-title="卡游 KAYOU · 王者荣耀" data-role="">
+            <img src="images/page47_img02.jpg" alt="卡游 KAYOU · 王者荣耀" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page47_img03.jpg" data-title="卡游 KAYOU · 王者荣耀" data-role="">
+            <img src="images/page47_img03.jpg" alt="卡游 KAYOU · 王者荣耀" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page47_img04.jpg" data-title="卡游 KAYOU · 王者荣耀" data-role="">
+            <img src="images/page47_img04.jpg" alt="卡游 KAYOU · 王者荣耀" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page47_img05.jpg" data-title="卡游 KAYOU · 王者荣耀" data-role="">
+            <img src="images/page47_img05.jpg" alt="卡游 KAYOU · 王者荣耀" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page47_img06.jpg" data-title="卡游 KAYOU · 王者荣耀" data-role="">
+            <img src="images/page47_img06.jpg" alt="卡游 KAYOU · 王者荣耀" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page47_img07.jpg" data-title="卡游 KAYOU · 王者荣耀" data-role="">
+            <img src="images/page47_img07.jpg" alt="卡游 KAYOU · 王者荣耀" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</spa
+      <div class="album" data-work="《无花果树下》">
+        <div class="album-header reveal"><h3 class="album-title">《无花果树下》</h3><span class="album-role">灯光指导 | 中国美术学院学院奖</span></div>
+        <div class="gallery-grid-fixed">
+          <div class="gallery-item" data-src="images/whg_01.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_01.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_02.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_02.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_03.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_03.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_04.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_04.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_05.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_05.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_06.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_06.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_07.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_07.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_08.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_08.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_09.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_09.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_10.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_10.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_11.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_11.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_12.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_12.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_13.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_13.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_14.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_14.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_15.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_15.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_16.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_16.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_17.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_17.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_18.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_18.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_19.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_19.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_20.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_20.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_21.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_21.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_22.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_22.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_23.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_23.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_24.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_24.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_25.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_25.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_26.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_26.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_27.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_27.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/whg_28.png" data-title="《无花果树下》" data-role="灯光指导 | 中国美术学院学院奖">
+            <img src="images/whg_28.png" alt="《无花果树下》" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+
+n></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="在校与自由时期作品">
+        <div class="album-header reveal"><h3 class="album-title">在校与自由时期作品</h3><span class="album-role">成长轨迹 + 独立表达</span></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page06_img02.jpg" data-title="在校与自由时期作品" data-role="成长轨迹 + 独立表达">
+            <img src="images/page06_img02.jpg" alt="在校与自由时期作品" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page06_img03.jpg" data-title="在校与自由时期作品" data-role="成长轨迹 + 独立表达">
+            <img src="images/page06_img03.jpg" alt="在校与自由时期作品" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page06_img04.jpg" data-title="在校与自由时期作品" data-role="成长轨迹 + 独立表达">
+            <img src="images/page06_img04.jpg" alt="在校与自由时期作品" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+          <div class="gallery-item" data-src="images/page06_img05.jpg" data-title="在校与自由时期作品" data-role="成长轨迹 + 独立表达">
+            <img src="images/page06_img05.jpg" alt="在校与自由时期作品" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="album" data-work="直播合作品牌">
+        <div class="album-header reveal"><h3 class="album-title">直播合作品牌</h3></div>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-src="images/page49_img01.jpg" data-title="直播合作品牌" data-role="">
+            <img src="images/page49_img01.jpg" alt="直播合作品牌" loading="lazy" />
+            <div class="gallery-overlay"><span class="view">查看 ⤢</span></div>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+<section class="section" id="brands">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="sec-label">Partners</div><h2 class="sec-title">合作品牌</h2><div class="sec-line"></div></div>
+    <p class="brand-sub reveal">直播合作品牌</p>
+    <div class="brand-wrap reveal">
+      <div class="brand-track" id="brandTrack">
+        <span class="brand-tag gold">星巴克</span><span class="brand-tag gold">瑞幸咖啡</span><span class="brand-tag gold">喜茶</span><span class="brand-tag gold">霸王茶姬</span><span class="brand-tag ">蜜雪冰城</span><span class="brand-tag ">茶百道</span><span class="brand-tag ">书亦烧仙草</span><span class="brand-tag ">益禾堂</span><span class="brand-tag ">7分甜</span><span class="brand-tag ">柠季</span><span class="brand-tag ">茉酸奶</span><span class="brand-tag ">陳多多</span><span class="brand-tag ">Tim Hortons</span><span class="brand-tag ">半天妖</span><span class="brand-tag ">胖哥俩</span><span class="brand-tag ">太二</span><span class="brand-tag ">爸爸糖</span><span class="brand-tag ">南京大牌檔</span><span class="brand-tag ">卤校长</span><span class="brand-tag ">朱光玉火锅馆</span><span class="brand-tag ">喜姐炸串</span><span class="brand-tag ">七欣天</span><span class="brand-tag ">破店肥哈</span><span class="brand-tag ">太食獸</span><span class="brand-tag ">沙胆彪</span><span class="brand-tag ">藤原布二</span><span class="brand-tag silver">KUMO KUMO</span><span class="brand-tag gold">星巴克</span><span class="brand-tag gold">瑞幸咖啡</span><span class="brand-tag gold">喜茶</span><span class="brand-tag gold">霸王茶姬</span><span class="brand-tag ">蜜雪冰城</span><span class="brand-tag ">茶百道</span><span class="brand-tag ">书亦烧仙草</span><span class="brand-tag ">益禾堂</span><span class="brand-tag ">7分甜</span><span class="brand-tag ">柠季</span><span class="brand-tag ">茉酸奶</span><span class="brand-tag ">陳多多</span><span class="brand-tag ">Tim Hortons</span><span class="brand-tag ">半天妖</span><span class="brand-tag ">胖哥俩</span><span class="brand-tag ">太二</span><span class="brand-tag ">爸爸糖</span><span class="brand-tag ">南京大牌檔</span><span class="brand-tag ">卤校长</span><span class="brand-tag ">朱光玉火锅馆</span><span class="brand-tag ">喜姐炸串</span><span class="brand-tag ">七欣天</span><span class="brand-tag ">破店肥哈</span><span class="brand-tag ">太食獸</span><span class="brand-tag ">沙胆彪</span><span class="brand-tag ">藤原布二</span><span class="brand-tag silver">KUMO KUMO</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="contact">
+  <div class="wrap">
+    <div class="footer-name">路思铭</div>
+    <div class="footer-contact">15009699413 &nbsp;·&nbsp; 1697144131@qq.com</div>
+    <div class="footer-contact gold">新片场签约摄影师 · Blackmagic Design 达芬奇认证</div>
+    <div class="footer-copy">&copy; 2025 Lu Siming. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose">✕</button>
+  <div class="lb-stage">
+    <div class="lb-spin" id="lbSpin"></div>
+    <img class="lb-img" id="lbImg" alt="" />
+    <div class="lb-cap" id="lbCap"></div>
+    <div class="lb-count" id="lbCount"></div>
+  </div>
+  <button class="lb-btn lb-prev" id="lbPrev">❮</button>
+  <button class="lb-btn lb-next" id="lbNext">❯</button>
+</div>
+
+<button class="totop" id="toTop" title="回到顶部">↑</button>
+
+<script>
+const GALLERY = [{"src": "images/page01_img02.jpg", "title": "封面", "role": ""}, {"src": "images/page01_img04.jpg", "title": "封面", "role": ""}, {"src": "images/page04_img02.jpg", "title": "认证与平台", "role": "新片场签约 / 达芬奇认证"}, {"src": "images/page04_img03.jpg", "title": "认证与平台", "role": "新片场签约 / 达芬奇认证"}, {"src": "images/page04_img04.jpg", "title": "认证与平台", "role": "新片场签约 / 达芬奇认证"}, {"src": "images/page04_img05.jpg", "title": "认证与平台", "role": "新片场签约 / 达芬奇认证"}, {"src": "images/page04_img06.jpg", "title": "认证与平台", "role": "新片场签约 / 达芬奇认证"}, {"src": "images/page08_img03.jpg", "title": "部分作品展示", "role": "按时间线排列"}, {"src": "images/page08_img04.jpg", "title": "部分作品展示", "role": "按时间线排列"}, {"src": "images/page09_img01.jpg", "title": "《望天水》", "role": "灯光师 / 花絮师"}, {"src": "images/page09_img02.jpg", "title": "《望天水》", "role": "灯光师 / 花絮师"}, {"src": "images/page09_img03.jpg", "title": "《望天水》", "role": "灯光师 / 花絮师"}, {"src": "images/page09_img04.jpg", "title": "《望天水》", "role": "灯光师 / 花絮师"}, {"src": "images/page09_img05.jpg", "title": "《望天水》", "role": "灯光师 / 花絮师"}, {"src": "images/page09_img06.jpg", "title": "《望天水》", "role": "灯光师 / 花絮师"}, {"src": "images/page09_img07.jpg", "title": "《望天水》", "role": "灯光师 / 花絮师"}, {"src": "images/page09_img08.jpg", "title": "《望天水》", "role": "灯光师 / 花絮师"}, {"src": "images/page09_img09.jpg", "title": "《望天水》", "role": "灯光师 / 花絮师"}, {"src": "images/page09_img10.jpg", "title": "《望天水》", "role": "灯光师 / 花絮师"}, {"src": "images/page09_img11.jpg", "title": "《望天水》", "role": "灯光师 / 花絮师"}, {"src": "images/page09_img12.jpg", "title": "《望天水》", "role": "灯光师 / 花絮师"}, {"src": "images/page10_img01.jpg", "title": "《图兰朵·心》", "role": "摄影 — 江苏省演艺集团京剧"}, {"src": "images/page10_img08.jpg", "title": "《图兰朵·心》", "role": "摄影 — 江苏省演艺集团京剧"}, {"src": "images/page10_img09.jpg", "title": "《图兰朵·心》", "role": "摄影 — 江苏省演艺集团京剧"}, {"src": "images/page10_img10.jpg", "title": "《图兰朵·心》", "role": "摄影 — 江苏省演艺集团京剧"}, {"src": "images/page11_img01.jpg", "title": "《紫丝带与红山茶》", "role": "灯光"}, {"src": "images/page11_img02.jpg", "title": "《紫丝带与红山茶》", "role": "灯光"}, {"src": "images/page11_img03.jpg", "title": "《紫丝带与红山茶》", "role": "灯光"}, {"src": "images/page11_img04.jpg", "title": "《紫丝带与红山茶》", "role": "灯光"}, {"src": "images/page11_img05.jpg", "title": "《紫丝带与红山茶》", "role": "灯光"}, {"src": "images/page12_img01.jpg", "title": "《长夜绵绵》", "role": "灯光"}, {"src": "images/page12_img02.jpg", "title": "《长夜绵绵》", "role": "灯光"}, {"src": "images/page12_img03.jpg", "title": "《长夜绵绵》", "role": "灯光"}, {"src": "images/page12_img04.jpg", "title": "《长夜绵绵》", "role": "灯光"}, {"src": "images/page12_img05.jpg", "title": "《长夜绵绵》", "role": "灯光"}, {"src": "images/page12_img06.jpg", "title": "《长夜绵绵》", "role": "灯光"}, {"src": "images/page12_img07.jpg", "title": "《长夜绵绵》", "role": "灯光"}, {"src": "images/page12_img08.jpg", "title": "《长夜绵绵》", "role": "灯光"}, {"src": "images/page12_img09.jpg", "title": "《长夜绵绵》", "role": "灯光"}, {"src": "images/page12_img10.jpg", "title": "《长夜绵绵》", "role": "灯光"}, {"src": "images/page13_img01.jpg", "title": "《浮白载笔》", "role": "摄影指导"}, {"src": "images/page13_img02.jpg", "title": "《浮白载笔》", "role": "摄影指导"}, {"src": "images/page13_img03.jpg", "title": "《浮白载笔》", "role": "摄影指导"}, {"src": "images/page13_img04.jpg", "title": "《浮白载笔》", "role": "摄影指导"}, {"src": "images/page13_img05.jpg", "title": "《浮白载笔》", "role": "摄影指导"}, {"src": "images/page13_img06.jpg", "title": "《浮白载笔》", "role": "摄影指导"}, {"src": "images/page13_img07.jpg", "title": "《浮白载笔》", "role": "摄影指导"}, {"src": "images/page13_img08.jpg", "title": "《浮白载笔》", "role": "摄影指导"}, {"src": "images/page13_img09.jpg", "title": "《浮白载笔》", "role": "摄影指导"}, {"src": "images/page13_img10.jpg", "title": "《浮白载笔》", "role": "摄影指导"}, {"src": "images/page13_img11.jpg", "title": "《浮白载笔》", "role": "摄影指导"}, {"src": "images/page13_img12.jpg", "title": "《浮白载笔》", "role": "摄影指导"}, {"src": "images/page14_img01.jpg", "title": "Kappa TVC", "role": "摄影"}, {"src": "images/page14_img02.jpg", "title": "Kappa TVC", "role": "摄影"}, {"src": "images/page14_img03.jpg", "title": "Kappa TVC", "role": "摄影"}, {"src": "images/page14_img04.jpg", "title": "Kappa TVC", "role": "摄影"}, {"src": "images/page14_img05.jpg", "title": "Kappa TVC", "role": "摄影"}, {"src": "images/page14_img06.jpg", "title": "Kappa TVC", "role": "摄影"}, {"src": "images/page15_img01.jpg", "title": "金典·春日有机生活节 TVC", "role": "掌机"}, {"src": "images/page15_img02.jpg", "title": "金典·春日有机生活节 TVC", "role": "掌机"}, {"src": "images/page16_img01.jpg", "title": "《霓虹之下》", "role": "掌机 — 监制 陈凯歌"}, {"src": "images/page16_img02.jpg", "title": "《霓虹之下》", "role": "掌机 — 监制 陈凯歌"}, {"src": "images/page16_img03.jpg", "title": "《霓虹之下》", "role": "掌机 — 监制 陈凯歌"}, {"src": "images/page17_img01.jpg", "title": "《蔚然成风》", "role": "制片人"}, {"src": "images/page17_img02.jpg", "title": "《蔚然成风》", "role": "制片人"}, {"src": "images/page18_img01.jpg", "title": "非遗短视频《苏绣》", "role": "摄影"}, {"src": "images/page18_img02.jpg", "title": "非遗短视频《苏绣》", "role": "摄影"}, {"src": "images/page18_img03.jpg", "title": "非遗短视频《苏绣》", "role": "摄影"}, {"src": "images/page18_img04.jpg", "title": "非遗短视频《苏绣》", "role": "摄影"}, {"src": "images/page18_img05.jpg", "title": "非遗短视频《苏绣》", "role": "摄影"}, {"src": "images/page18_img06.jpg", "title": "非遗短视频《苏绣》", "role": "摄影"}, {"src": "images/page18_img07.jpg", "title": "非遗短视频《苏绣》", "role": "摄影"}, {"src": "images/page18_img08.jpg", "title": "非遗短视频《苏绣》", "role": "摄影"}, {"src": "images/page18_img09.jpg", "title": "非遗短视频《苏绣》", "role": "摄影"}, {"src": "images/page18_img10.jpg", "title": "非遗短视频《苏绣》", "role": "摄影"}, {"src": "images/page18_img11.jpg", "title": "非遗短视频《苏绣》", "role": "摄影"}, {"src": "images/page18_img12.jpg", "title": "非遗短视频《苏绣》", "role": "摄影"}, {"src": "images/page18_img13.jpg", "title": "非遗短视频《苏绣》", "role": "摄影"}, {"src": "images/page18_img14.jpg", "title": "非遗短视频《苏绣》", "role": "摄影"}, {"src": "images/page18_img15.jpg", "title": "非遗短视频《苏绣》", "role": "摄影"}, {"src": "images/page19_img01.jpg", "title": "Canva 可画 TVC", "role": "摄影指导"}, {"src": "images/page19_img02.jpg", "title": "Canva 可画 TVC", "role": "摄影指导"}, {"src": "images/page19_img03.jpg", "title": "Canva 可画 TVC", "role": "摄影指导"}, {"src": "images/page19_img04.jpg", "title": "Canva 可画 TVC", "role": "摄影指导"}, {"src": "images/page19_img05.jpg", "title": "Canva 可画 TVC", "role": "摄影指导"}, {"src": "images/page19_img06.jpg", "title": "Canva 可画 TVC", "role": "摄影指导"}, {"src": "images/page19_img07.jpg", "title": "Canva 可画 TVC", "role": "摄影指导"}, {"src": "images/page19_img08.jpg", "title": "Canva 可画 TVC", "role": "摄影指导"}, {"src": "images/page20_img01.jpg", "title": "《预制》", "role": "导演 / 摄影指导 — 澳门国际微电影节入围"}, {"src": "images/page20_img02.jpg", "title": "《预制》", "role": "导演 / 摄影指导 — 澳门国际微电影节入围"}, {"src": "images/page20_img03.jpg", "title": "《预制》", "role": "导演 / 摄影指导 — 澳门国际微电影节入围"}, {"src": "images/page20_img04.jpg", "title": "《预制》", "role": "导演 / 摄影指导 — 澳门国际微电影节入围"}, {"src": "images/page20_img05.jpg", "title": "《预制》", "role": "导演 / 摄影指导 — 澳门国际微电影节入围"}, {"src": "images/page20_img06.jpg", "title": "《预制》", "role": "导演 / 摄影指导 — 澳门国际微电影节入围"}, {"src": "images/page20_img07.jpg", "title": "《预制》", "role": "导演 / 摄影指导 — 澳门国际微电影节入围"}, {"src": "images/page20_img08.jpg", "title": "《预制》", "role": "导演 / 摄影指导 — 澳门国际微电影节入围"}, {"src": "images/page21_img01.jpg", "title": "《上春山》", "role": "摄影"}, {"src": "images/page21_img02.jpg", "title": "《上春山》", "role": "摄影"}, {"src": "images/page21_img03.jpg", "title": "《上春山》", "role": "摄影"}, {"src": "images/page22_img01.jpg", "title": "《游泳》", "role": "摄影"}, {"src": "images/page22_img02.jpg", "title": "《游泳》", "role": "摄影"}, {"src": "images/page22_img03.jpg", "title": "《游泳》", "role": "摄影"}, {"src": "images/page22_img04.jpg", "title": "《游泳》", "role": "摄影"}, {"src": "images/page22_img05.jpg", "title": "《游泳》", "role": "摄影"}, {"src": "images/page22_img06.jpg", "title": "《游泳》", "role": "摄影"}, {"src": "images/page22_img07.jpg", "title": "《游泳》", "role": "摄影"}, {"src": "images/page22_img08.jpg", "title": "《游泳》", "role": "摄影"}, {"src": "images/page22_img09.jpg", "title": "《游泳》", "role": "摄影"}, {"src": "images/page23_img01.jpg", "title": "《何以为家》", "role": "制片人"}, {"src": "images/page23_img02.jpg", "title": "《何以为家》", "role": "制片人"}, {"src": "images/page23_img03.jpg", "title": "《何以为家》", "role": "制片人"}, {"src": "images/page23_img04.jpg", "title": "《何以为家》", "role": "制片人"}, {"src": "images/page23_img05.jpg", "title": "《何以为家》", "role": "制片人"}, {"src": "images/page23_img06.jpg", "title": "《何以为家》", "role": "制片人"}, {"src": "images/page23_img07.jpg", "title": "《何以为家》", "role": "制片人"}, {"src": "images/page23_img08.jpg", "title": "《何以为家》", "role": "制片人"}, {"src": "images/page23_img09.jpg", "title": "《何以为家》", "role": "制片人"}, {"src": "images/page24_img01.jpg", "title": "《秋水揽星河》", "role": "摄影指导 — 红果短剧"}, {"src": "images/page24_img02.jpg", "title": "《秋水揽星河》", "role": "摄影指导 — 红果短剧"}, {"src": "images/page24_img03.jpg", "title": "《秋水揽星河》", "role": "摄影指导 — 红果短剧"}, {"src": "images/page24_img04.jpg", "title": "《秋水揽星河》", "role": "摄影指导 — 红果短剧"}, {"src": "images/page24_img05.jpg", "title": "《秋水揽星河》", "role": "摄影指导 — 红果短剧"}, {"src": "images/page24_img06.jpg", "title": "《秋水揽星河》", "role": "摄影指导 — 红果短剧"}, {"src": "images/page24_img07.jpg", "title": "《秋水揽星河》", "role": "摄影指导 — 红果短剧"}, {"src": "images/page24_img08.jpg", "title": "《秋水揽星河》", "role": "摄影指导 — 红果短剧"}, {"src": "images/page24_img09.jpg", "title": "《秋水揽星河》", "role": "摄影指导 — 红果短剧"}, {"src": "images/page24_img10.jpg", "title": "《秋水揽星河》", "role": "摄影指导 — 红果短剧"}, {"src": "images/page24_img11.jpg", "title": "《秋水揽星河》", "role": "摄影指导 — 红果短剧"}, {"src": "images/page24_img12.jpg", "title": "《秋水揽星河》", "role": "摄影指导 — 红果短剧"}, {"src": "images/page25_img01.jpg", "title": "《寻金陵》", "role": "导演 / 摄影"}, {"src": "images/page25_img02.jpg", "title": "《寻金陵》", "role": "导演 / 摄影"}, {"src": "images/page25_img03.jpg", "title": "《寻金陵》", "role": "导演 / 摄影"}, {"src": "images/page25_img04.jpg", "title": "《寻金陵》", "role": "导演 / 摄影"}, {"src": "images/page25_img05.jpg", "title": "《寻金陵》", "role": "导演 / 摄影"}, {"src": "images/page25_img06.jpg", "title": "《寻金陵》", "role": "导演 / 摄影"}, {"src": "images/page25_img07.jpg", "title": "《寻金陵》", "role": "导演 / 摄影"}, {"src": "images/page25_img08.jpg", "title": "《寻金陵》", "role": "导演 / 摄影"}, {"src": "images/page25_img09.jpg", "title": "《寻金陵》", "role": "导演 / 摄影"}, {"src": "images/page26_img01.jpg", "title": "《桃花桃花》", "role": "摄影指导"}, {"src": "images/page26_img02.jpg", "title": "《桃花桃花》", "role": "摄影指导"}, {"src": "images/page26_img03.jpg", "title": "《桃花桃花》", "role": "摄影指导"}, {"src": "images/page26_img04.jpg", "title": "《桃花桃花》", "role": "摄影指导"}, {"src": "images/page26_img05.jpg", "title": "《桃花桃花》", "role": "摄影指导"}, {"src": "images/page26_img06.jpg", "title": "《桃花桃花》", "role": "摄影指导"}, {"src": "images/page26_img07.jpg", "title": "《桃花桃花》", "role": "摄影指导"}, {"src": "images/page26_img08.jpg", "title": "《桃花桃花》", "role": "摄影指导"}, {"src": "images/page27_img01.jpg", "title": "《我忘了片名叫什么》", "role": "摄影指导"}, {"src": "images/page27_img02.jpg", "title": "《我忘了片名叫什么》", "role": "摄影指导"}, {"src": "images/page27_img03.jpg", "title": "《我忘了片名叫什么》", "role": "摄影指导"}, {"src": "images/page27_img04.jpg", "title": "《我忘了片名叫什么》", "role": "摄影指导"}, {"src": "images/page27_img05.jpg", "title": "《我忘了片名叫什么》", "role": "摄影指导"}, {"src": "images/page27_img06.jpg", "title": "《我忘了片名叫什么》", "role": "摄影指导"}, {"src": "images/page27_img07.jpg", "title": "《我忘了片名叫什么》", "role": "摄影指导"}, {"src": "images/page27_img08.jpg", "title": "《我忘了片名叫什么》", "role": "摄影指导"}, {"src": "images/page27_img09.jpg", "title": "《我忘了片名叫什么》", "role": "摄影指导"}, {"src": "images/page28_img01.jpg", "title": "《reborn》", "role": "摄影指导"}, {"src": "images/page28_img02.jpg", "title": "《reborn》", "role": "摄影指导"}, {"src": "images/page28_img03.jpg", "title": "《reborn》", "role": "摄影指导"}, {"src": "images/page28_img04.jpg", "title": "《reborn》", "role": "摄影指导"}, {"src": "images/page28_img05.jpg", "title": "《reborn》", "role": "摄影指导"}, {"src": "images/page29_img01.jpg", "title": "《风筝艺绘》", "role": "摄影指导"}, {"src": "images/page29_img02.jpg", "title": "《风筝艺绘》", "role": "摄影指导"}, {"src": "images/page29_img03.jpg", "title": "《风筝艺绘》", "role": "摄影指导"}, {"src": "images/page29_img04.jpg", "title": "《风筝艺绘》", "role": "摄影指导"}, {"src": "images/page29_img05.jpg", "title": "《风筝艺绘》", "role": "摄影指导"}, {"src": "images/page29_img06.jpg", "title": "《风筝艺绘》", "role": "摄影指导"}, {"src": "images/page29_img07.jpg", "title": "《风筝艺绘》", "role": "摄影指导"}, {"src": "images/page29_img08.jpg", "title": "《风筝艺绘》", "role": "摄影指导"}, {"src": "images/page29_img09.jpg", "title": "《风筝艺绘》", "role": "摄影指导"}, {"src": "images/page30_img01.jpg", "title": "《七号岩芯》", "role": "摄影指导"}, {"src": "images/page30_img02.jpg", "title": "《七号岩芯》", "role": "摄影指导"}, {"src": "images/page30_img03.jpg", "title": "《七号岩芯》", "role": "摄影指导"}, {"src": "images/page30_img04.jpg", "title": "《七号岩芯》", "role": "摄影指导"}, {"src": "images/page30_img05.jpg", "title": "《七号岩芯》", "role": "摄影指导"}, {"src": "images/page30_img06.jpg", "title": "《七号岩芯》", "role": "摄影指导"}, {"src": "images/page30_img07.jpg", "title": "《七号岩芯》", "role": "摄影指导"}, {"src": "images/page30_img08.jpg", "title": "《七号岩芯》", "role": "摄影指导"}, {"src": "images/page31_img01.jpg", "title": "《大雾朦胧》", "role": "掌机 — 莫斯科国际电影节入围"}, {"src": "images/page31_img02.jpg", "title": "《大雾朦胧》", "role": "掌机 — 莫斯科国际电影节入围"}, {"src": "images/page31_img03.jpg", "title": "《大雾朦胧》", "role": "掌机 — 莫斯科国际电影节入围"}, {"src": "images/page31_img04.jpg", "title": "《大雾朦胧》", "role": "掌机 — 莫斯科国际电影节入围"}, {"src": "images/page31_img05.jpg", "title": "《大雾朦胧》", "role": "掌机 — 莫斯科国际电影节入围"}, {"src": "images/page32_img01.jpg", "title": "《小勇士大冒险》", "role": "摄影指导"}, {"src": "images/page32_img02.jpg", "title": "《小勇士大冒险》", "role": "摄影指导"}, {"src": "images/page32_img03.jpg", "title": "《小勇士大冒险》", "role": "摄影指导"}, {"src": "images/page32_img04.jpg", "title": "《小勇士大冒险》", "role": "摄影指导"}, {"src": "images/page32_img05.jpg", "title": "《小勇士大冒险》", "role": "摄影指导"}, {"src": "images/page32_img06.jpg", "title": "《小勇士大冒险》", "role": "摄影指导"}, {"src": "images/page32_img07.jpg", "title": "《小勇士大冒险》", "role": "摄影指导"}, {"src": "images/page32_img08.jpg", "title": "《小勇士大冒险》", "role": "摄影指导"}, {"src": "images/page32_img09.jpg", "title": "《小勇士大冒险》", "role": "摄影指导"}, {"src": "images/page33_img01.jpg", "title": "《盆栽》", "role": "制片人 / 摄影"}, {"src": "images/page33_img02.jpg", "title": "《盆栽》", "role": "制片人 / 摄影"}, {"src": "images/page33_img03.jpg", "title": "《盆栽》", "role": "制片人 / 摄影"}, {"src": "images/page33_img04.jpg", "title": "《盆栽》", "role": "制片人 / 摄影"}, {"src": "images/page34_img01.jpg", "title": "大广赛《AD钙奶》", "role": ""}, {"src": "images/page34_img02.jpg", "title": "大广赛《AD钙奶》", "role": ""}, {"src": "images/page34_img03.jpg", "title": "大广赛《AD钙奶》", "role": ""}, {"src": "images/page34_img04.jpg", "title": "大广赛《AD钙奶》", "role": ""}, {"src": "images/page35_img01.jpg", "title": "《永远》", "role": "灯光 — LAFA Winner"}, {"src": "images/page35_img02.jpg", "title": "《永远》", "role": "灯光 — LAFA Winner"}, {"src": "images/page35_img03.jpg", "title": "《永远》", "role": "灯光 — LAFA Winner"}, {"src": "images/page35_img04.jpg", "title": "《永远》", "role": "灯光 — LAFA Winner"}, {"src": "images/page35_img05.jpg", "title": "《永远》", "role": "灯光 — LAFA Winner"}, {"src": "images/page35_img06.jpg", "title": "《永远》", "role": "灯光 — LAFA Winner"}, {"src": "images/page35_img07.jpg", "title": "《永远》", "role": "灯光 — LAFA Winner"}, {"src": "images/page36_img01.jpg", "title": "《禾木》", "role": "制片人"}, {"src": "images/page36_img02.jpg", "title": "《禾木》", "role": "制片人"}, {"src": "images/page36_img03.jpg", "title": "《禾木》", "role": "制片人"}, {"src": "images/page36_img04.jpg", "title": "《禾木》", "role": "制片人"}, {"src": "images/page37_img02.jpg", "title": "镜头测试片", "role": ""}, {"src": "images/page37_img03.jpg", "title": "镜头测试片", "role": ""}, {"src": "images/page37_img04.jpg", "title": "镜头测试片", "role": ""}, {"src": "images/page38_img01.jpg", "title": "《麻雀》", "role": "灯光 — 澳门国际微电影节入围"}, {"src": "images/page38_img02.jpg", "title": "《麻雀》", "role": "灯光 — 澳门国际微电影节入围"}, {"src": "images/page38_img03.jpg", "title": "《麻雀》", "role": "灯光 — 澳门国际微电影节入围"}, {"src": "images/page38_img04.jpg", "title": "《麻雀》", "role": "灯光 — 澳门国际微电影节入围"}, {"src": "images/page38_img05.jpg", "title": "《麻雀》", "role": "灯光 — 澳门国际微电影节入围"}, {"src": "images/page38_img06.jpg", "title": "《麻雀》", "role": "灯光 — 澳门国际微电影节入围"}, {"src": "images/page38_img07.jpg", "title": "《麻雀》", "role": "灯光 — 澳门国际微电影节入围"}, {"src": "images/page38_img08.jpg", "title": "《麻雀》", "role": "灯光 — 澳门国际微电影节入围"}, {"src": "images/page38_img09.jpg", "title": "《麻雀》", "role": "灯光 — 澳门国际微电影节入围"}, {"src": "images/page39_img01.jpg", "title": "《你忘记了谁》", "role": "摄影 / 灯光"}, {"src": "images/page39_img02.jpg", "title": "《你忘记了谁》", "role": "摄影 / 灯光"}, {"src": "images/page40_img01.jpg", "title": "南京艺术学院人文学院宣传片", "role": "导演"}, {"src": "images/page40_img02.jpg", "title": "南京艺术学院人文学院宣传片", "role": "导演"}, {"src": "images/page40_img03.jpg", "title": "南京艺术学院人文学院宣传片", "role": "导演"}, {"src": "images/page40_img04.jpg", "title": "南京艺术学院人文学院宣传片", "role": "导演"}, {"src": "images/page40_img05.jpg", "title": "南京艺术学院人文学院宣传片", "role": "导演"}, {"src": "images/page40_img06.jpg", "title": "南京艺术学院人文学院宣传片", "role": "导演"}, {"src": "images/page41_img01.jpg", "title": "《守河人》", "role": "摄影指导"}, {"src": "images/page41_img02.jpg", "title": "《守河人》", "role": "摄影指导"}, {"src": "images/page41_img03.jpg", "title": "《守河人》", "role": "摄影指导"}, {"src": "images/page41_img04.jpg", "title": "《守河人》", "role": "摄影指导"}, {"src": "images/page41_img05.jpg", "title": "《守河人》", "role": "摄影指导"}, {"src": "images/page41_img06.jpg", "title": "《守河人》", "role": "摄影指导"}, {"src": "images/page41_img07.jpg", "title": "《守河人》", "role": "摄影指导"}, {"src": "images/page41_img08.jpg", "title": "《守河人》", "role": "摄影指导"}, {"src": "images/page41_img09.jpg", "title": "《守河人》", "role": "摄影指导"}, {"src": "images/page42_img01.jpg", "title": "《你向海 我向未来》", "role": "航拍 / 摄影师 — 南京长江隧道15周年"}, {"src": "images/page42_img02.jpg", "title": "《你向海 我向未来》", "role": "航拍 / 摄影师 — 南京长江隧道15周年"}, {"src": "images/page42_img03.jpg", "title": "《你向海 我向未来》", "role": "航拍 / 摄影师 — 南京长江隧道15周年"}, {"src": "images/page42_img04.jpg", "title": "《你向海 我向未来》", "role": "航拍 / 摄影师 — 南京长江隧道15周年"}, {"src": "images/page42_img05.jpg", "title": "《你向海 我向未来》", "role": "航拍 / 摄影师 — 南京长江隧道15周年"}, {"src": "images/page42_img06.jpg", "title": "《你向海 我向未来》", "role": "航拍 / 摄影师 — 南京长江隧道15周年"}, {"src": "images/page42_img07.jpg", "title": "《你向海 我向未来》", "role": "航拍 / 摄影师 — 南京长江隧道15周年"}, {"src": "images/page42_img08.jpg", "title": "《你向海 我向未来》", "role": "航拍 / 摄影师 — 南京长江隧道15周年"}, {"src": "images/page42_img09.jpg", "title": "《你向海 我向未来》", "role": "航拍 / 摄影师 — 南京长江隧道15周年"}, {"src": "images/page42_img10.jpg", "title": "《你向海 我向未来》", "role": "航拍 / 摄影师 — 南京长江隧道15周年"}, {"src": "images/page42_img11.jpg", "title": "《你向海 我向未来》", "role": "航拍 / 摄影师 — 南京长江隧道15周年"}, {"src": "images/page42_img12.jpg", "title": "《你向海 我向未来》", "role": "航拍 / 摄影师 — 南京长江隧道15周年"}, {"src": "images/page43_img01.jpg", "title": "《你想活出怎样的人生》", "role": "灯光"}, {"src": "images/page43_img02.jpg", "title": "《你想活出怎样的人生》", "role": "灯光"}, {"src": "images/page43_img03.jpg", "title": "《你想活出怎样的人生》", "role": "灯光"}, {"src": "images/page43_img04.jpg", "title": "《你想活出怎样的人生》", "role": "灯光"}, {"src": "images/page43_img05.jpg", "title": "《你想活出怎样的人生》", "role": "灯光"}, {"src": "images/page43_img06.jpg", "title": "《你想活出怎样的人生》", "role": "灯光"}, {"src": "images/page44_img01.jpg", "title": "《我会变成风来拥抱你》", "role": "摄影师 / 剪辑"}, {"src": "images/page44_img02.jpg", "title": "《我会变成风来拥抱你》", "role": "摄影师 / 剪辑"}, {"src": "images/page44_img03.jpg", "title": "《我会变成风来拥抱你》", "role": "摄影师 / 剪辑"}, {"src": "images/page44_img04.jpg", "title": "《我会变成风来拥抱你》", "role": "摄影师 / 剪辑"}, {"src": "images/page44_img05.jpg", "title": "《我会变成风来拥抱你》", "role": "摄影师 / 剪辑"}, {"src": "images/page44_img06.jpg", "title": "《我会变成风来拥抱你》", "role": "摄影师 / 剪辑"}, {"src": "images/page44_img07.jpg", "title": "《我会变成风来拥抱你》", "role": "摄影师 / 剪辑"}, {"src": "images/page44_img08.jpg", "title": "《我会变成风来拥抱你》", "role": "摄影师 / 剪辑"}, {"src": "images/page44_img09.jpg", "title": "《我会变成风来拥抱你》", "role": "摄影师 / 剪辑"}, {"src": "images/page44_img10.jpg", "title": "《我会变成风来拥抱你》", "role": "摄影师 / 剪辑"}, {"src": "images/page47_img02.jpg", "title": "卡游 KAYOU · 王者荣耀", "role": ""}, {"src": "images/page47_img03.jpg", "title": "卡游 KAYOU · 王者荣耀", "role": ""}, {"src": "images/page47_img04.jpg", "title": "卡游 KAYOU · 王者荣耀", "role": ""}, {"src": "images/page47_img05.jpg", "title": "卡游 KAYOU · 王者荣耀", "role": ""}, {"src": "images/page47_img06.jpg", "title": "卡游 KAYOU · 王者荣耀", "role": ""}, {"src": "images/page47_img07.jpg", "title": "卡游 KAYOU · 王者荣耀", "role": ""}, {"src": "images/page06_img02.jpg", "title": "在校与自由时期作品", "role": "成长轨迹 + 独立表达"}, {"src": "images/page06_img03.jpg", "title": "在校与自由时期作品", "role": "成长轨迹 + 独立表达"}, {"src": "images/page06_img04.jpg", "title": "在校与自由时期作品", "role": "成长轨迹 + 独立表达"}, {"src": "images/page06_img05.jpg", "title": "在校与自由时期作品", "role": "成长轨迹 + 独立表达"}, {"src": "images/page49_img01.jpg", "title": "直播合作品牌", "role": ""}];
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---- Scroll progress + nav ---- */
+const progress = document.getElementById('progress');
+const topnav = document.getElementById('topnav');
+const toTop = document.getElementById('toTop');
+function onScroll(){
+  const h = document.documentElement;
+  const sc = h.scrollTop;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (sc/max*100) + '%';
+  topnav.classList.toggle('show', sc > 80);
+  topnav.classList.toggle('scrolled', sc > 80);
+  toTop.classList.toggle('show', sc > 500);
+  // timeline progress
+  const tl = document.querySelector('.timeline');
+  if(tl){const r=tl.getBoundingClientRect();const vh=window.innerHeight;
+    const total=r.height; const passed=Math.min(Math.max(vh*0.5 - r.top,0),total);
+    document.getElementById('tlProgress').style.height=passed+'px';}
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+window.addEventListener('resize', onScroll);
+onScroll();
+
+/* ---- Theme toggle ---- */
+const themeBtn = document.getElementById('themeBtn');
+const saved = localStorage.getItem('ls-theme');
+if(saved) document.documentElement.setAttribute('data-theme', saved);
+themeBtn.addEventListener('click', ()=>{
+  const cur = document.documentElement.getAttribute('data-theme');
+  const next = cur==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('ls-theme', next);
+});
+
+/* ---- Mobile menu ---- */
+const menuBtn = document.getElementById('menuBtn');
+const navlinks = document.getElementById('navlinks');
+menuBtn.addEventListener('click', ()=> navlinks.classList.toggle('open'));
+navlinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navlinks.classList.remove('open')));
+
+/* ---- Reveal on scroll ---- */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---- Stat count up ---- */
+const statIO = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ countUp(e.target); statIO.unobserve(e.target);} });
+},{threshold:0.5});
+function countUp(el){
+  const target=+el.dataset.count, suf=el.dataset.suffix||'';
+  if(reduce){el.textContent=target+suf;return;}
+  let t0=null;
+  function step(ts){ if(!t0)t0=ts; const p=Math.min((ts-t0)/1200,1); const e=1-Math.pow(1-p,3);
+    el.textContent=Math.round(e*target)+suf; if(p<1)requestAnimationFrame(step);}
+  requestAnimationFrame(step);
+}
+document.querySelectorAll('.stat-number').forEach(el=>statIO.observe(el));
+
+/* ---- Nav active link ---- */
+const secs = [...document.querySelectorAll('section[id]')];
+const navMap = {};
+document.querySelectorAll('.nav-links a').forEach(a=>navMap[a.getAttribute('href').slice(1)]=a);
+const navIO = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ const id=e.target.id;
+    Object.values(navMap).forEach(a=>a.classList.remove('active'));
+    if(navMap[id])navMap[id].classList.add('active');} });
+},{threshold:0.4});
+secs.forEach(s=>navIO.observe(s));
+
+/* ---- Gallery filter ---- */
+const chips = document.getElementById('chips');
+chips.addEventListener('click', e=>{
+  const btn = e.target.closest('.chip'); if(!btn)return;
+  chips.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  const f = btn.dataset.filter;
+  document.querySelectorAll('.album').forEach(al=>{
+    al.classList.toggle('hide', f!=='all' && al.dataset.work!==f);
+  });
+});
+
+/* ---- Lightbox ---- */
+const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'),
+  lbCap=document.getElementById('lbCap'), lbCount=document.getElementById('lbCount'),
+  lbSpin=document.getElementById('lbSpin');
+let viewList=[], pos=0, zoomed=false;
+function visibleItems(){ return [...document.querySelectorAll('.gallery-item')].filter(el=>el.offsetParent!==null); }
+function showAt(list, i){
+  viewList=list; pos=(i+list.length)%list.length;
+  const el=list[pos];
+  lbSpin.classList.add('show');
+  const img=new Image();
+  img.onload=()=>{ lbImg.src=img.src; lbSpin.classList.remove('show'); };
+  img.src=el.dataset.src;
+  lbCap.innerHTML = el.dataset.title + (el.dataset.role?('<small>'+el.dataset.role+'</small>'):'');
+  lbCount.textContent = (pos+1)+' / '+list.length;
+  zoomed=false; lbImg.classList.remove('zoom');
+}
+function openLB(el){ const list=visibleItems(); const i=list.indexOf(el); showAt(list,i); lb.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeLB(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+function nav(d){ showAt(viewList, pos+d); }
+document.querySelectorAll('.gallery-item').forEach(it=>it.addEventListener('click',()=>openLB(it)));
+document.getElementById('lbClose').addEventListener('click',closeLB);
+document.getElementById('lbPrev').addEventListener('click',e=>{e.stopPropagation();nav(-1);});
+document.getElementById('lbNext').addEventListener('click',e=>{e.stopPropagation();nav(1);});
+lb.addEventListener('click',e=>{ if(e.target===lb||e.target.classList.contains('lb-stage'))closeLB(); });
+lbImg.addEventListener('click',e=>{ e.stopPropagation(); zoomed=!zoomed; lbImg.classList.toggle('zoom',zoomed); });
+document.addEventListener('keydown',e=>{
+  if(!lb.classList.contains('open'))return;
+  if(e.key==='Escape')closeLB();
+  else if(e.key==='ArrowLeft')nav(-1);
+  else if(e.key==='ArrowRight')nav(1);
+});
+
+/* ---- Particles ---- */
+if(!reduce){
+  const cv=document.getElementById('particles'), ctx=cv.getContext('2d');
+  let W,H,pts;
+  function init(){ W=cv.width=innerWidth; H=cv.height=innerHeight;
+    const n=Math.min(70, Math.floor(W*H/26000));
+    pts=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.6+.4,
+      vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,a:Math.random()*.5+.2})); }
+  function tick(){ ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{ p.x+=p.vx;p.y+=p.vy; if(p.x<0||p.x>W)p.vx*=-1; if(p.y<0||p.y>H)p.vy*=-1;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,7);ctx.fillStyle='rgba(212,175,106,'+p.a+')';ctx.fill(); });
+    requestAnimationFrame(tick); }
+  init(); tick(); addEventListener('resize',init);
+}
+
+/* ---- Back to top ---- */
+toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>
